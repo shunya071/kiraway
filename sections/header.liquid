@@ -1,0 +1,51 @@
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "search_logo",
+      "label": "Search_logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_logo",
+      "label": "Cart_logo"
+    }
+  ]
+}
+{% endschema %}
+<header class="site-header">
+  <!-- Logo Section -->
+  <div class="site-header__logo">
+    <a href="{{ shop.url }}">
+      <img src="{{ settings.logo | file_url }}" alt="{{ shop.name }} Logo">
+    </a>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="site-navigation">
+    <ul class="navigation-menu">
+      <li><a href="/collections/all">商品</a></li>
+      <li><a href="/pages/about-us">店舗情報</a></li>
+      <li><a href="/pages/contact">お問い合わせ</a></li>
+    </ul>
+  </nav>
+
+  <!-- Search & Cart -->
+  <div class="site-header__extras">
+    <a href="/search" class="search-icon">
+      <img src="{{ settings.search_logo | file_url }}" alt="検索用">
+    </a>
+    <a href="/cart" class="cart-icon">
+      <img src="{{ settings.cart_logo | file_url }}" alt="カート">
+    </a>
+  </div>
+</header>
+
+

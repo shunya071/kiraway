@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("{{ 'myfont.woff' | asset_url }}") format("woff");
+}
+
+h1 {
+  color: #0000FF;
+  font-family: "NoTo Sans JP";
+}
+
+.head_logo {
+  width: 70px;
+  height: 70px;
+}
+
+/* Base styles */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #006341;
+  color: white;
+}
+
+.site-header__logo img {
+  height: 40px;
+}
+
+.site-navigation {
+  flex-grow: 1;
+}
+
+.navigation-menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.navigation-menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.site-header__extras a {
+  color: white;
+  margin-left: 20px;
+}
+
+.search-icon, .cart-icon {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon svg, .cart-icon svg {
+  fill: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navigation-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-header__logo img {
+    height: 30px;
+  }
+
+  .site-header__extras {
+    margin-top: 10px;
+  }
+}
