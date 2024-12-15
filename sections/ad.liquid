@@ -59,8 +59,8 @@
     <div class="swiper-wrapper">
       {% for slide in settings.slider_images %}
         <div class="swiper-slide">
-          <a href="{{ slide.link }}" onclick="gtag('event', 'click', {'event_category':'slide計測_総合TOP', 'event_label':'{{ forloop.index }}枚目'});">
-            <img src="{{ slide.image | img_url: '800x' }}" alt="{{ slide.alt_text }}" class="c-topSlideImg">
+          <a href="{{ slide.link }}">
+            <img src="{{ slide.image | img_url: '750x' }}" alt="{{ slide.alt_text }}" class="">
           </a>
         </div>
       {% endfor %}
