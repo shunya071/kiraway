@@ -19,7 +19,54 @@
       "max": 20,
       "step": 1,
       "default": 16
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_image_1",
+      "label": "スライダー画像1"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_1",
+      "label": "スライダーリンク1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_image_2",
+      "label": "スライダー画像2"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_2",
+      "label": "スライダーリンク2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slider_image_3",
+      "label": "スライダー画像3"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_3",
+      "label": "スライダーリンク3"
     }
   ]
 }
 {% endschema %}
+
+<section class="main_slider" style="padding: {{ settings.slider_padding | times: 10 }}px;">
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      {% for slide in settings.slider_images %}
+        <div class="swiper-slide">
+          <a href="{{ slide.link }}" onclick="gtag('event', 'click', {'event_category':'slide計測_総合TOP', 'event_label':'{{ forloop.index }}枚目'});">
+            <img src="{{ slide.image | img_url: '800x' }}" alt="{{ slide.alt_text }}" class="c-topSlideImg">
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    <!-- ナビゲーションボタン -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+</section>
