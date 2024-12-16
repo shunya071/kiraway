@@ -24,7 +24,7 @@
   <!-- Logo Section -->
   <div class="site-header__logo">
     <a href="{{ shop.url }}">
-      <img src="{{ settings.logo | file_url }}" alt="{{ shop.name }} Logo">
+      <img src="{{ 'kiraway_logo.webp' | asset_url }}" alt="{{ shop.name }} Logo">
     </a>
   </div>
 
@@ -39,10 +39,10 @@
   <!-- Search & Cart -->
   <div class="site-header__extras">
     <a href="/search" class="search-icon">
-      <img src="{{ settings.search_logo |img_url: '70px' }}" alt="検索用">
+      <img src="{{ 'search_logo.webp' | asset_url }}" alt="検索用">
     </a>
     <a href="/cart" class="cart-icon">
-      <img src="{{ settings.cart_logo | img_url: '70px' }}" alt="カート">
+      <img src="{{ 'cart_logo.webp' | asset_url }}" alt="カート">
     </a>
   </div>
 </header>

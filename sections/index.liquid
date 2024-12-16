@@ -57,13 +57,21 @@
 <section class="main_slider" style="padding: {{ settings.slider_padding | times: 10 }}px;">
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      {% for slide in settings.slider_images %}
-        <div class="swiper-slide">
-          <a href="{{ slide.link }}">
-            <img src="{{ slide.image | img_url: '750x' }}" alt="{{ slide.alt_text }}" class="">
-          </a>
-        </div>
-      {% endfor %}
+      <div class="swiper-slide">
+        <a href="{{ settings.slider_link_1 }}">
+          <img src="{{ slider_image_1.png | asset_url }}" alt="スライダー画像1">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="{{ settings.slider_link_2 }}">
+          <img src="{{ slider_image_2.png | asset_url }}" alt="スライダー画像2">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="{{ settings.slider_link_3 }}">
+          <img src="{{ slider_image_3.png | asset_url }}" alt="スライダー画像3">
+        </a>
+      </div>
     </div>
     <!-- ナビゲーションボタン -->
     <div class="swiper-button-next"></div>
