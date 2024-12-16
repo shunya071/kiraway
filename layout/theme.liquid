@@ -14,15 +14,8 @@
     </head>
     
     <body>
-      {% section 'header' %}
-  
-      {% if template == 'ad' %}
-        {% section 'ad' %}
-      {% else %}
-        {{ content_for_layout }}
-      {% endif %}
-  
-      {% section 'footer' %}
+      {{ content_for_layout }}
+
     </body>
   </html>
   
