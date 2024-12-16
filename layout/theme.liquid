@@ -12,9 +12,17 @@
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       {{ content_for_header }}
     </head>
-  
+    
     <body>
-      {{ content_for_layout }}
-      {{ content_for_index }}
+      {% section 'header' %}
+  
+      {% if template == 'ad' %}
+        {% section 'ad' %}
+      {% else %}
+        {{ content_for_layout }}
+      {% endif %}
+  
+      {% section 'footer' %}
     </body>
   </html>
+  
