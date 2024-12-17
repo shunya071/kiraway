@@ -1,0 +1,50 @@
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "search_logo",
+      "label": "Search_logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_logo",
+      "label": "Cart_logo"
+    }
+  ]
+}
+{% endschema %}
+<header class="site-header">
+  <section class="site-header__wrap">
+    <div class="site-header__logo">
+      <a href="{{ shop.url }}">
+        <img src="{{ 'kiraway_logo.webp' | asset_url }}" alt="{{ shop.name }} Logo">
+      </a>
+    </div>
+
+    <nav class="site-navigation">
+      <ul class="navigation-menu">
+        <li><a href="/collections/all">商品</a></li>
+        <li><a href="/pages/about-us">店舗情報</a></li>
+        <li><a href="/pages/contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__extras">
+      <a href="/search" class="search-icon">
+        <img src="{{ 'search_logo.webp' | asset_url }}" alt="検索用">
+      </a>
+      <a href="/cart" class="cart-icon">
+        <img src="{{ 'cart_logo.webp' | asset_url }}" alt="カート">
+      </a>
+    </div>
+  </section>
+</header>
+
+

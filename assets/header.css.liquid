@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Noto Sans JP";
+  src: url("{{ 'myfont.woff' | asset_url }}") format("woff");
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.head_logo {
+  width: 70px;
+  height: 70px;
+}
+
+.site-header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #FFF;
+  color: #333;
+  width: 100%;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 999;
+  box-shadow: 0px 3px 6px #3333;
+}
+
+.site-header__logo img {
+  height: 60px;
+}
+
+.site-navigation {
+  flex-grow: 1;
+}
+
+.navigation-menu {
+  display: flex;
+  margin-left: 2rem;
+  gap: 20px;
+  font-weight: bold;
+}
+
+.navigation-menu li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.site-header__extras a {
+  color: #333;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.site-header__extras {
+  display: flex;
+  align-items: center;
+}
+
+.search-icon img,
+.cart-icon img {
+  height: 35px;
+  width: 35px;
+}
+
+.search-icon svg, .cart-icon svg {
+  fill: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .navigation-menu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .site-header__logo img {
+    height: 30px;
+  }
+
+  .site-header__extras {
+    margin-top: 10px;
+  }
+}
