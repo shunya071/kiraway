@@ -51,5 +51,26 @@
         "label": "スライダーリンク3"
       }
     ]
+  },
+  
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "search_logo",
+        "label": "Search_logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_logo",
+        "label": "Cart_logo"
+      }
+    ]
   }
 ]
