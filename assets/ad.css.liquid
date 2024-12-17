@@ -1,17 +1,13 @@
-/* スライダー全体のスタイル */
-.main_slider {
-  padding: {{ settings.slider_padding | times: 10 }}px;
+.swiper-wrapper {
+  padding-top: 8rem;
+}
+.swiper-container {
+  margin: 0 auto;
+  overflow: hidden;
 }
 
-/* スライド画像のスタイル */
 .swiper-slide img {
-  width: 100%;  /* 画像をスライドの幅に合わせる */
-  height: auto; /* 高さを自動調整 */
-}
-
-/* ナビゲーションボタン */
-.swiper-button-next, .swiper-button-prev {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border-radius: 50%;
+  display: block;
+  width: 100%;
+  border-radius: 10px;
 }

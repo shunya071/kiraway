@@ -15,7 +15,7 @@
       }
     },
     "footer": {
-      "type": "footer"
+      "type": "footer",
     }
   },
   "order": ["header", "ad", "footer"]
