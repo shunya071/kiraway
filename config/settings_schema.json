@@ -1,12 +1,55 @@
 [
-{
-  "name": "setting1",
-  "settings": [
-    {
-      "type": "text",
-      "id": "setting1",
-      "label": "TEXT"
-    }
-  ]
-}
+  {
+    "name": "広告",
+    "settings": [
+      {
+        "type": "range",
+        "id": "slider_padding",
+        "label": "スライダーのパディング",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "font_size",
+        "label": "フォントサイズ",
+        "min": 13,
+        "max": 20,
+        "step": 1,
+        "default": 16
+      },
+      {
+        "type": "image_picker",
+        "id": "slider_image_1",
+        "label": "スライダー画像1"
+      },
+      {
+        "type": "url",
+        "id": "slider_link_1",
+        "label": "スライダーリンク1"
+      },
+      {
+        "type": "image_picker",
+        "id": "slider_image_2",
+        "label": "スライダー画像2"
+      },
+      {
+        "type": "url",
+        "id": "slider_link_2",
+        "label": "スライダーリンク2"
+      },
+      {
+        "type": "image_picker",
+        "id": "slider_image_3",
+        "label": "スライダー画像3"
+      },
+      {
+        "type": "url",
+        "id": "slider_link_3",
+        "label": "スライダーリンク3"
+      }
+    ]
+  }
 ]
