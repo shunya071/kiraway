@@ -8,5 +8,11 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "slider_image_1": "shopify://shop_images/slider_image1.png",
+    "slider_image_2": "shopify://shop_images/chaperu.jpg",
+    "slider_image_3": "shopify://shop_images/business-cat-in-office.jpg",
+    "slider_image_4": "shopify://shop_images/flatlay-iron-skillet-with-meat-and-other-food.jpg",
+    "content_for_index": []
+  }
 }

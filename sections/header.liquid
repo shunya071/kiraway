@@ -1,34 +1,50 @@
-{% schema %}
-{
-  "name": "Header",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "search_logo",
-      "label": "Search_logo"
-    },
-    {
-      "type": "image_picker",
-      "id": "cart_logo",
-      "label": "Cart_logo"
-    }
-  ]
+{% style %}
+#search-text {
+  -webkit-appearance: none; /*SafariやChromeのデフォルトの設定を無効*/
+  width: 35px; /*テキスト入力エリアが伸びる前の横幅*/
+  height: 35px;
+  padding: 20px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.3)
+  url("{{ section.settings.search_logo | img_url: 'master' }}") no-repeat 17px center;
+  background-size: 35px;
+  transition: all 0.5s; /*transitionを使ってスムースに伸ばす*/
+  outline: none;
+  cursor: pointer; /*カーソルを指マークに*/
 }
-{% endschema %}
+
+/*テキスト入力inputにフォーカスした時の形状*/
+#search-text:focus {
+  width: 40vw; /*テキスト入力エリアが伸びる後の横幅*/
+  padding: 20px 0 20px 60px;
+  background: url("{{ section.settings.search_logo | img_url: 'master' }}") no-repeat 17px center;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 3px 3px 6px #757575;
+}
+.site-navigation {
+  display: none; /* 初期状態で非表示 */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.site-navigation.active {
+  display: block; /* ハンバーガーメニュークリック時に表示 */
+}
+{% endstyle %}
 <header class="site-header">
   <section class="site-header__wrap">
     <div class="site-header__logo">
       <a href="{{ shop.url }}">
-        <img src="{{ 'kiraway_logo.webp' | asset_url }}" alt="{{ shop.name }} Logo">
+        <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }} Logo">
       </a>
     </div>
 
-    <nav class="site-navigation">
+    <nav class="site-navigation" id="site-navigation">
       <ul class="navigation-menu">
         <li><a href="/collections/all">商品</a></li>
         <li><a href="/pages/about-us">店舗情報</a></li>
@@ -37,14 +53,72 @@
     </nav>
 
     <div class="site-header__extras">
-      <a href="/search" class="search-icon">
-        <img src="{{ 'search_logo.webp' | asset_url }}" alt="検索用">
-      </a>
+      <div id="search-wrap">
+        <form role="search" method="get" action="">
+          <input type="text" value="" name="" id="search-text">
+        </form>
+      </div>
       <a href="/cart" class="cart-icon">
-        <img src="{{ 'cart_logo.webp' | asset_url }}" alt="カート">
+        <img src="{{ section.settings.cart_logo | img_url: 'master' }}" alt="カート">
+      </a>
+      <a href="javascript:void(0);" class="menu-icon" id="menu-button">
+        <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
       </a>
     </div>
   </section>
 </header>
 
+{% javascript %}
+document.addEventListener("DOMContentLoaded", function () {
+  const menuButton = document.getElementById("menu-button");
+  const siteNavigation = document.getElementById("site-navigation");
 
+  // ハンバーガーメニューのクリックイベント
+  menuButton.addEventListener("click", function () {
+    if (siteNavigation.classList.contains("active")) {
+      siteNavigation.classList.remove("active");
+    } else {
+      siteNavigation.classList.add("active");
+    }
+  });
+
+  // メニュー外をクリックすると非表示
+  window.addEventListener("click", function (event) {
+    if (
+      !siteNavigation.contains(event.target) &&
+      event.target !== menuButton &&
+      !menuButton.contains(event.target)
+    ) {
+      siteNavigation.classList.remove("active");
+    }
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "search_logo",
+        "label": "Search_logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "cart_logo",
+        "label": "Cart_logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "menu_logo",
+        "label": "Menu_logo"
+      }
+    ]
+  }
+{% endschema %}
