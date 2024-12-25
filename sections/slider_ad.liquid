@@ -22,9 +22,8 @@
           <a href="{{ section.settings.slide_1_links }}">
           <img src="{{ section.settings.slide_1_image | img_url: 'master' }}"
                alt="{{ section.settings.slide_1_text }}"
-               loading="lazy"
-               width="100%"
-               height="auto">
+               loading="lazy">
+          </a>
         </li>
       {%- endif -%}
       
@@ -33,9 +32,8 @@
           <a href="{{ section.settings.slide_2_links }}">
           <img src="{{ section.settings.slide_2_image | img_url: 'master' }}"
                alt="{{ section.settings.slide_2_text }}"
-               loading="lazy"
-               width="100%"
-               height="auto">
+               loading="lazy">
+          </a>
         </li>
       {%- endif -%}
       
@@ -44,9 +42,8 @@
           <a href="{{ section.settings.slide_3_links }}">
           <img src="{{ section.settings.slide_3_image | img_url: 'master' }}"
                alt="{{ section.settings.slide_3_text }}"
-               loading="lazy"
-               width="100%"
-               height="auto">
+               loading="lazy">
+          </a>
         </li>
       {%- endif -%}
       
@@ -55,9 +52,8 @@
           <a href="{{ section.settings.slide_4_links }}">
           <img src="{{ section.settings.slide_4_image | img_url: 'master' }}"
                alt="{{ section.settings.slide_4_text }}"
-               loading="lazy"
-               width="100%"
-               height="auto">
+               loading="lazy">
+          </a>
         </li>
       {%- endif -%}
       
@@ -66,9 +62,8 @@
           <a href="{{ section.settings.slide_5_links }}">
           <img src="{{ section.settings.slide_5_image | img_url: 'master' }}"
                alt="{{ section.settings.slide_5_text }}"
-               loading="lazy"
-               width="100%"
-               height="auto">
+               loading="lazy">
+          </a>
         </li>
       {%- endif -%}
     </ul>
@@ -86,17 +81,17 @@
       pauseOnFocus: false,
       interval: 5000,
       speed: 2000,
-      padding: '20%',
-      gap: 20,
+      padding: '10%',
+      gap: '0px', // デフォルトの間隔
       breakpoints: {
         749: {
-          perPage: 1,
-          padding: '10%'
+          gap: '5px' // スマートフォンサイズの間隔
         }
       }
     }).mount();
   });
 </script>
+
 
 {% schema %}
 {

@@ -1,4 +1,4 @@
-<style>
+{% comment %} <style>
   .splide__slide img {
     width: 100%;
     height: 100%;
@@ -12,63 +12,68 @@
   }
 </style>
 
-<div class="splide" 
+<div class="splide season" 
      role="group" 
      aria-label="{{ section.settings.slider_label }}">
   <div class="splide__track">
     <ul class="splide__list">
-      {%- if section.settings.slide_1_image != blank -%}
+      {%- if section.settings.season1_image != blank -%}
         <li class="splide__slide">
-          <a href="{{ section.settings.slide_1_links }}">
-          <img src="{{ section.settings.slide_1_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_1_text }}"
+          <a href="{{ section.settings.season1_links }}">
+          <img src="{{ section.settings.season1_image | img_url: 'master' }}"
+               alt="{{ section.settings.season1_text }}"
                loading="lazy"
                width="100%"
                height="auto">
+          </a>
         </li>
       {%- endif -%}
       
-      {%- if section.settings.slide_2_image != blank -%}
+      {%- if section.settings.season2_image != blank -%}
         <li class="splide__slide">
-          <a href="{{ section.settings.slide_2_links }}">
-          <img src="{{ section.settings.slide_2_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_2_text }}"
+          <a href="{{ section.settings.season2_links }}">
+          <img src="{{ section.settings.season2_image | img_url: 'master' }}"
+               alt="{{ section.settings.season2_text }}"
                loading="lazy"
                width="100%"
                height="auto">
+          </a>
         </li>
       {%- endif -%}
       
-      {%- if section.settings.slide_3_image != blank -%}
+      {%- if section.settings.season3_image != blank -%}
         <li class="splide__slide">
-          <a href="{{ section.settings.slide_3_links }}">
-          <img src="{{ section.settings.slide_3_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_3_text }}"
+          <a href="{{ section.settings.season3_links }}">
+          <img src="{{ section.settings.season3_image | img_url: 'master' }}"
+               alt="{{ section.settings.season3_text }}"
                loading="lazy"
                width="100%"
                height="auto">
+          </a>
         </li>
       {%- endif -%}
       
-      {%- if section.settings.slide_4_image != blank -%}
+      {%- if section.settings.season4_image != blank -%}
         <li class="splide__slide">
-          <a href="{{ section.settings.slide_4_links }}">
-          <img src="{{ section.settings.slide_4_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_4_text }}"
+          <a href="{{ section.settings.season4_links }}">
+          <img src="{{ section.settings.season4_image | img_url: 'master' }}"
+               alt="{{ section.settings.season4_text }}"
                loading="lazy"
                width="100%"
                height="auto">
+          </a>
         </li>
       {%- endif -%}
       
-      {%- if section.settings.slide_5_image != blank -%}
+      {%- if section.settings.season5_image != blank -%}
         <li class="splide__slide">
-          <a href="{{ section.settings.slide_5_links }}">
-          <img src="{{ section.settings.slide_5_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_5_text }}"
+          <a href="{{ section.settings.season5_links }}">
+          <img src="{{ section.settings.season5_image | img_url: 'master' }}"
+               alt="{{ section.settings.season5_text }}"
                loading="lazy"
                width="100%"
                height="auto">
+          </a>
         </li>
       {%- endif -%}
     </ul>
@@ -79,7 +84,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    new Splide('.splide', {
+    new Splide('.season', {
       autoplay: true,
       type: 'loop',
       pauseOnHover: false,
@@ -110,52 +115,52 @@
     },
     {
       "type": "image_picker",
-      "id": "slide_1_image",
+      "id": "season1_image",
       "label": "スライド 1 の画像"
     },
     {
       "type": "url",
-      "id": "slider_link_1",
+      "id": "season1_links",
       "label": "スライダーリンク1"
     },
     {
       "type": "image_picker",
-      "id": "slide_2_image",
+      "id": "season2_image",
       "label": "スライド 2 の画像"
     },
     {
       "type": "url",
-      "id": "slider_link_2",
+      "id": "season2_links",
       "label": "スライダーリンク2"
     },
     {
       "type": "image_picker",
-      "id": "slide_3_image",
+      "id": "season3_image",
       "label": "スライド 3 の画像"
     },
     {
       "type": "url",
-      "id": "slider_link_3",
+      "id": "season3_links",
       "label": "スライダーリンク3"
     },
     {
       "type": "image_picker",
-      "id": "slide_4_image",
+      "id": "season4_image",
       "label": "スライド 4 の画像"
     },
     {
       "type": "url",
-      "id": "slider_link_4",
+      "id": "season4_links",
       "label": "スライダーリンク4"
     },
     {
       "type": "image_picker",
-      "id": "slide_5_image",
+      "id": "season5_image",
       "label": "スライド 5 の画像"
     },
     {
       "type": "url",
-      "id": "slider_link_5",
+      "id": "season5_links",
       "label": "スライダーリンク5"
     },
   ],
@@ -165,4 +170,4 @@
     }
   ]
 }
-{% endschema %}
+{% endschema %} {% endcomment %}

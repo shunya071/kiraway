@@ -1,40 +1,25 @@
 {% style %}
-#search-text {
-  -webkit-appearance: none; /*SafariやChromeのデフォルトの設定を無効*/
-  width: 35px; /*テキスト入力エリアが伸びる前の横幅*/
-  height: 35px;
-  padding: 20px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.3)
-  url("{{ section.settings.search_logo | img_url: 'master' }}") no-repeat 17px center;
-  background-size: 35px;
-  transition: all 0.5s; /*transitionを使ってスムースに伸ばす*/
-  outline: none;
-  cursor: pointer; /*カーソルを指マークに*/
-}
-
-/*テキスト入力inputにフォーカスした時の形状*/
-#search-text:focus {
-  width: 40vw; /*テキスト入力エリアが伸びる後の横幅*/
-  padding: 20px 0 20px 60px;
-  background: url("{{ section.settings.search_logo | img_url: 'master' }}") no-repeat 17px center;
-  background-color: rgba(255, 255, 255, 0.6);
-  box-shadow: 3px 3px 6px #757575;
-}
-.site-navigation {
-  display: none; /* 初期状態で非表示 */
+.header__nav-area {
+  display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: white;
+  background: #fff;
   width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+  z-index: 100;
+  border-top: 1px solid #ccc;
 }
 
-.site-navigation.active {
-  display: block; /* ハンバーガーメニュークリック時に表示 */
+.header__nav-area.is-open {
+  display: block;
 }
+
+.menu-icon img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
 {% endstyle %}
 <header class="site-header">
   <section class="site-header__wrap">
@@ -44,55 +29,75 @@
       </a>
     </div>
 
-    <nav class="site-navigation" id="site-navigation">
-      <ul class="navigation-menu">
-        <li><a href="/collections/all">商品</a></li>
-        <li><a href="/pages/about-us">店舗情報</a></li>
-        <li><a href="/pages/contact">お問い合わせ</a></li>
-      </ul>
-    </nav>
-
     <div class="site-header__extras">
-      <div id="search-wrap">
-        <form role="search" method="get" action="">
-          <input type="text" value="" name="" id="search-text">
-        </form>
-      </div>
+      <a href="/person" class="person-icon">
+        <img src="{{ section.settings.person_logo | img_url: 'master' }}" alt="個人情報">
+      </a>
       <a href="/cart" class="cart-icon">
         <img src="{{ section.settings.cart_logo | img_url: 'master' }}" alt="カート">
       </a>
-      <a href="javascript:void(0);" class="menu-icon" id="menu-button">
-        <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
-      </a>
+          <!-- ハンバーガーメニューアイコン -->
+          <a href="javascript:void(0);" class="menu-icon" id="menu-button" aria-controls="navigation" aria-expanded="false" aria-label="メニューを開く">
+            <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
+          </a>
+      
+          <div class="header__nav-area js-nav-area" id="navigation">
+            <nav id="js-global-navigation" class="global-navigation">
+              <ul class="global-navigation__list">
+                <li>
+                  <a href="#" class="global-navigation__link">
+                    メニュー
+                  </a>
+                </li>
+                <li>
+                  <button type="button" class="global-navigation__link -accordion js-sp-accordion-trigger" aria-expanded="false" aria-controls="accordion1">
+                    親メニュー
+                  </button>
+                  <div id="accordion1" class="accordion js-accordion">
+                    <ul class="accordion__list">
+                      <li>
+                        <a href="#" class="accordion__link">
+                          子メニュー
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="accordion__link">
+                          子メニュー
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#" class="accordion__link">
+                          子メニュー
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" class="global-navigation__link">
+                    メニュー
+                  </a>
+                </li>
+              </ul>
+              <div id="js-focus-trap" tabindex="0"></div>
+            </nav>
+      
     </div>
   </section>
 </header>
 
 {% javascript %}
-document.addEventListener("DOMContentLoaded", function () {
-  const menuButton = document.getElementById("menu-button");
-  const siteNavigation = document.getElementById("site-navigation");
-
-  // ハンバーガーメニューのクリックイベント
-  menuButton.addEventListener("click", function () {
-    if (siteNavigation.classList.contains("active")) {
-      siteNavigation.classList.remove("active");
-    } else {
-      siteNavigation.classList.add("active");
-    }
-  });
-
-  // メニュー外をクリックすると非表示
-  window.addEventListener("click", function (event) {
-    if (
-      !siteNavigation.contains(event.target) &&
-      event.target !== menuButton &&
-      !menuButton.contains(event.target)
-    ) {
-      siteNavigation.classList.remove("active");
-    }
+document.addEventListener('DOMContentLoaded', function () {
+  const menuButton = document.getElementById('menu-button');
+  const navArea = document.getElementById('navigation');
+  
+  menuButton.addEventListener('click', function () {
+    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', !expanded);
+    navArea.classList.toggle('is-open');
   });
 });
+
 {% endjavascript %}
 
 {% schema %}
@@ -106,8 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         "type": "image_picker",
-        "id": "search_logo",
-        "label": "Search_logo"
+        "id": "person_logo",
+        "label": "person_logo"
       },
       {
         "type": "image_picker",
