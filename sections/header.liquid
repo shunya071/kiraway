@@ -1,4 +1,5 @@
 {% style %}
+/* デフォルト状態ではメニューを非表示にする */
 .header__nav-area {
   display: none;
   position: absolute;
@@ -10,22 +11,18 @@
   border-top: 1px solid #ccc;
 }
 
+/* メニューが開いている状態 */
 .header__nav-area.is-open {
   display: block;
 }
 
-.menu-icon img {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
 
 {% endstyle %}
 <header class="site-header">
   <section class="site-header__wrap">
     <div class="site-header__logo">
       <a href="{{ shop.url }}">
-        <img src="{{ section.settings.logo | img_url: 'master' }}" alt="{{ shop.name }} Logo">
+        <img src="{{ kiraway_logo.webp | asset_url }}" alt="{{ shop.name }} Logo">
       </a>
     </div>
 
@@ -36,52 +33,21 @@
       <a href="/cart" class="cart-icon">
         <img src="{{ section.settings.cart_logo | img_url: 'master' }}" alt="カート">
       </a>
-          <!-- ハンバーガーメニューアイコン -->
-          <a href="javascript:void(0);" class="menu-icon" id="menu-button" aria-controls="navigation" aria-expanded="false" aria-label="メニューを開く">
-            <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
-          </a>
-      
-          <div class="header__nav-area js-nav-area" id="navigation">
-            <nav id="js-global-navigation" class="global-navigation">
-              <ul class="global-navigation__list">
-                <li>
-                  <a href="#" class="global-navigation__link">
-                    メニュー
-                  </a>
-                </li>
-                <li>
-                  <button type="button" class="global-navigation__link -accordion js-sp-accordion-trigger" aria-expanded="false" aria-controls="accordion1">
-                    親メニュー
-                  </button>
-                  <div id="accordion1" class="accordion js-accordion">
-                    <ul class="accordion__list">
-                      <li>
-                        <a href="#" class="accordion__link">
-                          子メニュー
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="accordion__link">
-                          子メニュー
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="accordion__link">
-                          子メニュー
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li>
-                  <a href="#" class="global-navigation__link">
-                    メニュー
-                  </a>
-                </li>
-              </ul>
-              <div id="js-focus-trap" tabindex="0"></div>
-            </nav>
-      
+      <!-- ハンバーガーメニューアイコン -->
+      <a href="javascript:void(0);" class="menu-icon" id="menu-button" aria-controls="navigation" aria-expanded="false" aria-label="メニューを開く">
+        <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
+      </a>
+  
+      <!-- ナビゲーションエリア -->
+      <div class="header__nav-area js-nav-area" id="navigation">
+        <nav id="js-global-navigation" class="global-navigation">
+          <ul class="global-navigation__list">
+            <li><a href="#">メニュー1</a></li>
+            <li><a href="#">メニュー2</a></li>
+            <li><a href="#">メニュー3</a></li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </section>
 </header>
@@ -90,10 +56,15 @@
 document.addEventListener('DOMContentLoaded', function () {
   const menuButton = document.getElementById('menu-button');
   const navArea = document.getElementById('navigation');
-  
+
   menuButton.addEventListener('click', function () {
-    const expanded = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', !expanded);
+    // 現在の状態を取得
+    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+
+    // 状態を反転させる
+    menuButton.setAttribute('aria-expanded', !isExpanded);
+
+    // メニューの開閉を切り替える
     navArea.classList.toggle('is-open');
   });
 });
