@@ -1,4 +1,7 @@
 <style>
+  .splide {
+    background: #fff;
+  }
   .splide__slide img {
     width: 100%;
     height: 250px;
@@ -8,80 +11,69 @@
   }
   
   .splide__track {
-    margin-top: 4rem;
+    padding: 4rem 0;
   }
+  
   .splide__slide {
     margin: 0 1rem;
-    width: 27vw !important;
-  }
-  @media screen and (max-width: 1024px) {
-    .splide__slide {
-      width: 33vw !important;
-    }
+    width: 33vw !important;
   }
 
   .splide__pagination {
-    bottom: -1.5em;
+    bottom: 1.5em;
+  }
+  .splide__pagination__page.is-active {
+    background: #464646;
   }
 </style>
 
-<div class="splide" 
-     role="group" 
-     aria-label="{{ section.settings.slider_label }}">
-  <div class="splide__track">
-    <ul class="splide__list">
-      {%- if section.settings.slide_1_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_1_link }}">
-          <img src="{{ section.settings.slide_1_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_1_text }}"
-               loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_2_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_2_link }}">
-          <img src="{{ section.settings.slide_2_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_2_text }}"
-               loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_3_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_3_link }}">
-          <img src="{{ section.settings.slide_3_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_3_text }}"
-               loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_4_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_4_link }}">
-          <img src="{{ section.settings.slide_4_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_4_text }}"
-               loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_5_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_5_link }}">
-          <img src="{{ section.settings.slide_5_image | img_url: 'master' }}"
-               alt="{{ section.settings.slide_5_text }}"
-               loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-    </ul>
+<section class="kira_block">
+  <div class="splide" role="group" aria-label="{{ section.settings.slider_label }}">
+    <div class="splide__track">
+      <ul class="splide__list">
+        {%- if section.settings.slide_1_image != blank -%}
+          <li class="splide__slide">
+            <a href="{{ section.settings.slide_1_link }}">
+            <img src="{{ section.settings.slide_1_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+            </a>
+          </li>
+        {%- endif -%}
+        
+        {%- if section.settings.slide_2_image != blank -%}
+          <li class="splide__slide">
+            <a href="{{ section.settings.slide_2_link }}">
+            <img src="{{ section.settings.slide_2_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+            </a>
+          </li>
+        {%- endif -%}
+        
+        {%- if section.settings.slide_3_image != blank -%}
+          <li class="splide__slide">
+            <a href="{{ section.settings.slide_3_link }}">
+            <img src="{{ section.settings.slide_3_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+            </a>
+          </li>
+        {%- endif -%}
+        
+        {%- if section.settings.slide_4_image != blank -%}
+          <li class="splide__slide">
+            <a href="{{ section.settings.slide_4_link }}">
+            <img src="{{ section.settings.slide_4_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+            </a>
+          </li>
+        {%- endif -%}
+        
+        {%- if section.settings.slide_5_image != blank -%}
+          <li class="splide__slide">
+            <a href="{{ section.settings.slide_5_link }}">
+            <img src="{{ section.settings.slide_5_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+            </a>
+          </li>
+        {%- endif -%}
+      </ul>
+    </div>
   </div>
-</div>
+</section>
 
 {{ 'splide.min.js' | asset_url | script_tag }}
 
@@ -94,15 +86,12 @@
       pauseOnFocus: false,
       interval: 5000,
       speed: 2000,
-      padding: '10%',
-      gap: '0px', // デフォルトの間隔
+      padding: '15%',
+      gap: '0px',
+      focus: 'center',
       breakpoints: {
-        1024: {
-          padding: '5%',
-          centerMode: true,
-        }
         749: {
-          gap: '5px' // スマートフォンサイズの間隔
+          gap: '5px',
         }
       }
     }).mount();

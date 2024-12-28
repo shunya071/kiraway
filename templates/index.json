@@ -17,8 +17,16 @@
       "type": "slider_ad",
       "settings": {}
     },
+    "search": {
+      "type": "search",
+      "settings": {}
+    },
     "slider_season": {
       "type": "slider_season",
+      "settings": {}
+    },
+    "featured-product": {
+      "type": "featured-product",
       "settings": {}
     },
     "footer": {
@@ -29,7 +37,10 @@
   "order": [
     "header",
     "slider_ad",
+    "search",
     "slider_season",
+    "featured-product",
+    "product",
     "footer"
   ]
 }

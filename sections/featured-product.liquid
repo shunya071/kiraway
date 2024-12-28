@@ -1,0 +1,42 @@
+{% comment %}
+特定の商品を表示するセクション
+{% endcomment %}
+
+<div class="featured-product">
+  {% if section.settings.product %}
+    {% assign product = all_products[section.settings.product] %}
+    <h2>{{ product.title }}</h2>
+    <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+    <p>{{ product.price | money }}</p>
+    <a href="{{ product.url }}">商品ページを見る</a>
+  {% else %}
+    <p>商品が選択されていません。</p>
+  {% endif %}
+</div>
+
+{% style %}
+  
+  .featured-product {
+    text-align: center;
+    margin: 20px;
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "特定の商品",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "表示する商品を選択"
+    }
+  ],
+  "presets": [
+    {
+      "name": "特定の商品を表示"
+    }
+  ]
+}
+{% endschema %}
+

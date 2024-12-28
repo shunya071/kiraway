@@ -1,100 +1,26 @@
-{% style %}
-/* デフォルト状態ではメニューを非表示にする */
-.header__nav-area {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  width: 100%;
-  z-index: 100;
-  border-top: 1px solid #ccc;
-}
-
-/* メニューが開いている状態 */
-.header__nav-area.is-open {
-  display: block;
-}
-
-
-{% endstyle %}
-<header class="site-header">
-  <section class="site-header__wrap">
-    <div class="site-header__logo">
-      <a href="{{ shop.url }}">
-        <img src="{{ kiraway_logo.webp | asset_url }}" alt="{{ shop.name }} Logo">
-      </a>
+<header>
+  <div class="header_wrap">
+    <div class="logotype">
+      <img src="{{ 'kiraway_logo.webp' | asset_url }}" alt="Kiraway logo">
     </div>
-
-    <div class="site-header__extras">
-      <a href="/person" class="person-icon">
-        <img src="{{ section.settings.person_logo | img_url: 'master' }}" alt="個人情報">
+    <nav>
+      <a href="/">
+        <img src="{{ 'person_icon.png' | asset_url }}" alt="会員情報" class="nav_img">
       </a>
-      <a href="/cart" class="cart-icon">
-        <img src="{{ section.settings.cart_logo | img_url: 'master' }}" alt="カート">
+      <a href="/">
+        <img src="{{ 'cart_icon.png' | asset_url }}" alt="カート情報" class="nav_img cart">
       </a>
-      <!-- ハンバーガーメニューアイコン -->
-      <a href="javascript:void(0);" class="menu-icon" id="menu-button" aria-controls="navigation" aria-expanded="false" aria-label="メニューを開く">
-        <img src="{{ section.settings.menu_logo | img_url: 'master' }}" alt="ハンバーガーメニュー">
-      </a>
-  
-      <!-- ナビゲーションエリア -->
-      <div class="header__nav-area js-nav-area" id="navigation">
-        <nav id="js-global-navigation" class="global-navigation">
-          <ul class="global-navigation__list">
-            <li><a href="#">メニュー1</a></li>
-            <li><a href="#">メニュー2</a></li>
-            <li><a href="#">メニュー3</a></li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </section>
+      <input id="menu__toggle" type="checkbox" class="toggle">
+      <label class="menu__btn" for="menu__toggle">
+        <span></span>
+      </label>
+      <ul class="menu__box">
+        <li><a class="menu__item" href="#">Home</a></li>
+        <li><a class="menu__item" href="#">Services</a></li>
+        <li><a class="menu__item" href="#">Portfolio</a></li>
+        <li><a class="menu__item" href="#">About</a></li>
+        <li><a class="menu__item" href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
 </header>
-
-{% javascript %}
-document.addEventListener('DOMContentLoaded', function () {
-  const menuButton = document.getElementById('menu-button');
-  const navArea = document.getElementById('navigation');
-
-  menuButton.addEventListener('click', function () {
-    // 現在の状態を取得
-    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-
-    // 状態を反転させる
-    menuButton.setAttribute('aria-expanded', !isExpanded);
-
-    // メニューの開閉を切り替える
-    navArea.classList.toggle('is-open');
-  });
-});
-
-{% endjavascript %}
-
-{% schema %}
-  {
-    "name": "Header",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "logo",
-        "label": "Logo"
-      },
-      {
-        "type": "image_picker",
-        "id": "person_logo",
-        "label": "person_logo"
-      },
-      {
-        "type": "image_picker",
-        "id": "cart_logo",
-        "label": "Cart_logo"
-      },
-      {
-        "type": "image_picker",
-        "id": "menu_logo",
-        "label": "Menu_logo"
-      }
-    ]
-  }
-{% endschema %}

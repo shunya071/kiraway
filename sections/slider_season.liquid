@@ -1,129 +1,211 @@
-<style>
+{% style %}
+  .scroll_content { /* リスト全体のスタイル */
+    display: flex;
+    max-width: 100vw;
+    padding: 3rem 0 0 2rem;
+    overflow-x: auto;
+  }
 
-</style>
+  .scroll_content li { /* 各リストのスタイル */
+    width: 90%;
+    padding: 0;
+    margin: 1rem .5rem;
+    flex-shrink: 0;
+    list-style: none;
+    box-shadow: 0 0 4px #00000033;
+    border-radius: 10px;
+  }
 
-<div class="splide" 
-     role="group" 
-     aria-label="{{ section.settings.slider_label }}">
-  <div class="splide__track">
-    <ul class="splide__list">
-      {%- if section.settings.slide_1_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_1_link }}">
-            <img src="{{ section.settings.slide_1_image | img_url: 'master' }}"
-              alt="{{ section.settings.slide_1_text }}"
-              loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_2_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_2_link }}">
-          <img src="{{ section.settings.slide_2_image | img_url: 'master' }}"
-              alt="{{ section.settings.slide_2_text }}"
-              loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_3_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_3_link }}">
-          <img src="{{ section.settings.slide_3_image | img_url: 'master' }}"
-              alt="{{ section.settings.slide_3_text }}"
-              loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_4_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_4_link }}">
-          <img src="{{ section.settings.slide_4_image | img_url: 'master' }}"
-              alt="{{ section.settings.slide_4_text }}"
-              loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-      
-      {%- if section.settings.slide_5_image != blank -%}
-        <li class="splide__slide">
-          <a href="{{ section.settings.slide_5_link }}">
-          <img src="{{ section.settings.slide_5_image | img_url: 'master' }}"
-              alt="{{ section.settings.slide_5_text }}"
-              loading="lazy">
-          </a>
-        </li>
-      {%- endif -%}
-    </ul>
-  </div>
-</div>
+  .scroll_content img { /* 画像のスタイル */
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .scroll_content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll_content::-webkit-scrollbar-thumb {
+    background: #aaa; /* ツマミの色 */
+    border-radius: 6px; /* ツマミ両端の丸み */
+  }
+
+  .scroll_content::-webkit-scrollbar-track {
+    background: #ddd; /* トラックの色 */
+    border-radius: 6px; /* トラック両端の丸み */
+  }
+
+  .k-bor10 {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .special_ttl {
+    padding: 1rem;
+    margin-bottom: 4rem;
+    font-size: 16px;
+    color: #464646;
+  }
+
+  @media screen and (min-width: 450px) {
+
+    .scroll_content li {
+      width: 20%;
+    }
+
+}
+{% endstyle %}
+<section class="kira_block">
+  <ul class="scroll_content">
+    {%- if section.settings.slide_1_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_1_link }}">
+        <img src="{{ section.settings.slide_1_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text1 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_2_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_2_link }}">
+        <img src="{{ section.settings.slide_2_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text2 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_3_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_3_link }}">
+        <img src="{{ section.settings.slide_3_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text3 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_4_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_4_link }}">
+          <img src="{{ section.settings.slide_4_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text4 }}</p>
+        </a>
+      </li>
+    {% endif %}
+    {%- if section.settings.slide_5_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_5_link }}">
+          <img src="{{ section.settings.slide_5_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text5 }}</p>
+        </a>
+      </li>
+    {% endif %}
+    {%- if section.settings.slide_6_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_6_link }}">
+          <img src="{{ section.settings.slide_6_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text6 }}</p>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</section>
 
 {% schema %}
 {
   "name": "Season Slider",
   "settings": [
     {
-      "type": "text",
-      "id": "slider_label",
-      "label": "スライダーのラベル",
-      "default": "シーズナルスライダー"
-    },
-    {
       "type": "image_picker",
       "id": "slide_1_image",
-      "label": "スライド 1 の画像"
+      "label": "シーズナル1 の画像"
     },
     {
       "type": "url",
       "id": "slider_link_1",
-      "label": "スライダーリンク1"
+      "label": "シーズナルリンク1"
+    },
+    {
+      "type": "text",
+      "id": "slide_text1",
+      "label": "シーズナルタイトル1"
     },
     {
       "type": "image_picker",
       "id": "slide_2_image",
-      "label": "スライド 2 の画像"
+      "label": "シーズナル2 の画像"
     },
     {
       "type": "url",
       "id": "slider_link_2",
-      "label": "スライダーリンク2"
+      "label": "シーズナルリンク2"
+    },
+    {
+      "type": "text",
+      "id": "slide_text2",
+      "label": "シーズナルタイトル2"
     },
     {
       "type": "image_picker",
       "id": "slide_3_image",
-      "label": "スライド 3 の画像"
+      "label": "シーズナル3 の画像"
     },
     {
       "type": "url",
       "id": "slider_link_3",
-      "label": "スライダーリンク3"
+      "label": "シーズナルリンク3"
+    },
+    {
+      "type": "text",
+      "id": "slide_text3",
+      "label": "シーズナルタイトル3"
     },
     {
       "type": "image_picker",
       "id": "slide_4_image",
-      "label": "スライド 4 の画像"
+      "label": "シーズナル4 の画像"
     },
     {
       "type": "url",
       "id": "slider_link_4",
-      "label": "スライダーリンク4"
+      "label": "シーズナルリンク4"
+    },
+    {
+      "type": "text",
+      "id": "slide_text4",
+      "label": "シーズナルタイトル4"
     },
     {
       "type": "image_picker",
       "id": "slide_5_image",
-      "label": "スライド 5 の画像"
+      "label": "シーズナル5 の画像"
     },
     {
       "type": "url",
       "id": "slider_link_5",
-      "label": "スライダーリンク5"
+      "label": "シーズナルリンク5"
+    },
+    {
+      "type": "text",
+      "id": "slide_text5",
+      "label": "シーズナルタイトル5"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_6_image",
+      "label": "シーズナル6 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_6",
+      "label": "シーズナルリンク6"
+    },
+    {
+      "type": "text",
+      "id": "slide_text6",
+      "label": "シーズナルタイトル6"
     },
   ],
   "presets": [
     {
-      "name": "シーズナルスライダー"
+      "name": "シーズナルバナー"
     }
   ]
 }
