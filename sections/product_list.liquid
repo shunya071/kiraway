@@ -2,86 +2,55 @@
 複数の商品を追加できる横スクロールセクション
 {% endcomment %}
 
-<section class="product_block">
-  <div class="product_list">
-    <h2 class="productList_ttl">{{ section.settings.category }}</h2>
-    <a href="/">もっと見る</a>
-  </div>
-  <div class="featured-product-container">
+<section class="productList_block">
+  <h2 class="productList_ttl">商品一覧</h2>
+  <div class="productList_cnt">
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.product] %}
       {% if product %}
         <div class="featured-product">
           <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-          <h2 class="product_ttl">{{ product.title }}</h2>
-          <p class="product_price">{{ product.price | money }}</p>
-          <a href="{{ product.url }}" class="product_link">商品ページを見る</a>
+          <h2>{{ product.title }}</h2>
+          <p>{{ product.price | money }}</p>
+          <a href="{{ product.url }}" class="product_link">商品を見る</a>
         </div>
       {% endif %}
     {% endfor %}
   </div>
+  <a href="/" class="product_list_link">もっと見る</a>
 </section>
 
 {% style %}
-  .product_ttl {
-    padding: 1rem 0 1rem 1rem; 
-  }
-  .product_price {
-    text-align: right;
-    padding-right: 1rem;
-  }
-  .product_link {
-    text-align: center;
-    border: 1px solid #FF7700;
-    border-radius: 30px;
-    background: #fff;
-    padding: .7rem;
-    color: #FF7700;
-    width: 80%;
-    margin: 1rem auto;
-    font-weight: bold;
-    display: block;
-    font-size: 14px;
-  }
-  .product_block {
-    background: #FFE3CF;
+  .productList_block {
+    background: #FFF;
     margin-bottom: 1.5rem;
     box-shadow: 0 3px 3px #00000033;
     padding: 0 0.5rem 1rem 1rem;
   }
 
-  .product_list {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .productList_ttl {
     padding-top: 3rem;
-    margin: 0 auto;
-    width: 80%;
-  }
-  .product_list h2 {
     color: #464646;
     font-weight: bold;
     font-size: 18px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: inset 3px 3px 6px #00000033;
-    padding: 1rem;
+    text-align: center;
   }
-  .product_list a {
+  .product_list_link {
     color: #fff;
     font-weight: bold;
     background: #FF7700;
     display: block;
     padding: 1rem 0;
     border-radius: 10px;
-    width: 15%;
+    width: 20%;
+    margin: 2rem auto;
     position: relative;
     text-align: center;
     font-size: 14px;
     box-shadow: 3px 3px 6px #00000033;
   }
 
-  .product_list a::after {
+  .product_list_link::after {
     position: absolute;
     content: '';
     top: 50%;
@@ -93,17 +62,18 @@
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
   }
-  .featured-product-container {
+  .productList_cnt {
     display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    flex-wrap: wrap;
     gap: 16px;
+    width: 90%;
+    margin: 0 auto;
     padding: 2rem 0 2rem 1rem;
   }
 
   .featured-product {
-    flex: 0 0 auto;
-    width: 250px;
+    flex: 0 0 auto; /* 横並びを維持 */
+    width: 250px; /* 商品ブロックの幅を設定 */
     scroll-snap-align: start;
     border-radius: 10px;
     background-color: #fff;
@@ -111,28 +81,15 @@
   }
 
   .featured-product img {
-    width: 100%;
+    width: 100%; /* 画像をブロック幅に合わせる */
     height: auto;
     border-radius: 4px;
-  }
-
-  .featured-product-container::-webkit-scrollbar {
-    height: 4px;
-  }
-
-  .featured-product-container::-webkit-scrollbar-thumb {
-    background-color: #bbb;
-    border-radius: 4px;
-  }
-
-  .featured-product-container::-webkit-scrollbar-track {
-    background-color: #f0f0f0;
   }
 {% endstyle %}
 
 {% schema %}
 {
-  "name": "カテゴリ商品棚",
+  "name": "商品一覧",
   "blocks": [
     {
       "type": "product",
@@ -146,16 +103,9 @@
       ],
     },
   ],
-  "settings": [
-    {
-      "type": "text",
-      "id": "category",
-      "label": "カテゴリ名"
-    },
-  ],
   "presets": [
     {
-      "name": "カテゴリ商品棚",
+      "name": "商品一覧",
       "blocks": [
         {
           "type": "product"
