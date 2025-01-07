@@ -8,8 +8,9 @@
       {{ 'header.css' | asset_url | stylesheet_tag }}
       {{ 'ad.css' | asset_url | stylesheet_tag }}
       {{ 'main.js' | asset_url | script_tag }}
-      <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-      <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+      <!-- Swiper.js CDN -->
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+      <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       {{ content_for_header }}
     </head>
     

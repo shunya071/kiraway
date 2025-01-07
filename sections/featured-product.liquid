@@ -15,7 +15,7 @@
           <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
           <h2 class="product_ttl">{{ product.title }}</h2>
           <p class="product_price">{{ product.price | money }}</p>
-          <a href="{{ product.url }}" class="product_link">商品ページを見る</a>
+          <a href="{{ product.url }}" class="product_link">商品を見る</a>
         </div>
       {% endif %}
     {% endfor %}
@@ -98,7 +98,7 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 16px;
-    padding: 2rem 0 2rem 1rem;
+    padding: 2rem 0 2rem 0;
   }
 
   .featured-product {
@@ -127,6 +127,18 @@
 
   .featured-product-container::-webkit-scrollbar-track {
     background-color: #f0f0f0;
+  }
+  @media screen and (max-width: 768px) {
+    .product_list {
+      width: 100%;
+    }
+    .product_list a {
+      width: 35%;
+      font-size: 13px;
+    }
+    .product_list h2 {
+      font-size: 15px;
+    }
   }
 {% endstyle %}
 

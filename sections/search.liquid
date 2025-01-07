@@ -35,6 +35,9 @@
   .index_search_button, .index_search_input {
       font-size: 14px!important;
     }
+  .index_search_contents {
+    padding: 3rem 0;
+  }
   }
 
   .k-bgClr--white01 {
@@ -47,7 +50,7 @@
       <div class="index_search_contents">
           <div class="search_form_feild index_search_field">
           <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form index_search_form">
-              <input type="search" class="index_search_input" name="q" autocomplete="off" autocorrect="off" autocapitalize="off" aria-label="{{ 'search.general.input_placeholder' | t }}" placeholder="product search" autofocus>
+              <input type="search" class="index_search_input" name="q" autocomplete="off" autocorrect="off" autocapitalize="off" aria-label="{{ 'search.general.input_placeholder' | t }}" placeholder="product search">
               <input type="hidden" name="type" value="product">
               <button class="index_search_button" data-action="search" aria-label="{{ 'header.navigation.close_search' | t }}">Go</button>
           </form>

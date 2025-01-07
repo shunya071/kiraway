@@ -8,7 +8,7 @@
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.product] %}
       {% if product %}
-        <div class="featured-product">
+        <div class="productList_item">
           <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
           <h2>{{ product.title }}</h2>
           <p>{{ product.price | money }}</p>
@@ -71,7 +71,7 @@
     padding: 2rem 0 2rem 1rem;
   }
 
-  .featured-product {
+  .productList_item {
     flex: 0 0 auto; /* 横並びを維持 */
     width: 250px; /* 商品ブロックの幅を設定 */
     scroll-snap-align: start;
@@ -80,10 +80,28 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .featured-product img {
+  .productList_item img {
     width: 100%; /* 画像をブロック幅に合わせる */
     height: auto;
     border-radius: 4px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .productList_item {
+      width: 45%;
+    }
+    .product_list_link {
+      width: 50%;
+    }
+    .productList_cnt {
+      padding: 0;
+      padding-top: 2rem;
+      width: 100%;
+      justify-content: center;
+    }
+    .productList_block {
+      padding: 0 1rem 1rem;
+    }
   }
 {% endstyle %}
 

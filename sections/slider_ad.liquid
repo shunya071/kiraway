@@ -1,106 +1,83 @@
-<style>
-  .splide {
-    background: #fff;
-  }
-  .splide__slide img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    aspect-ratio: 16/9;
-    border-radius: 20px;
-  }
-  
-  .splide__track {
-    padding: 4rem 0;
-  }
-  
-  .splide__slide {
-    margin: 0 1rem;
-    width: 33vw !important;
-  }
-
-  .splide__pagination {
-    bottom: 1.5em;
-  }
-  .splide__pagination__page.is-active {
-    background: #464646;
-  }
-  .splide__list {
-    padding: 0 1rem !important
-  }
-</style>
+{% style %}
+.swiper {
+  padding: 3rem 0;
+  position: relative;
+}
+.swiper-slide {
+  width: 100% !important;
+  padding: 1rem;
+}
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.swiper-pagination-bullet-active {
+  background-color: #000;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000;
+  font-size: 1.5rem;
+}
+{% endstyle %}
 
 <section class="kira_block">
-  <div class="splide" role="group" aria-label="{{ section.settings.slider_label }}">
-    <div class="splide__track">
-      <ul class="splide__list">
-        {%- if section.settings.slide_1_image != blank -%}
-          <li class="splide__slide">
-            <a href="{{ section.settings.slide_1_link }}">
-            <img src="{{ section.settings.slide_1_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
+  <div class="swiper" aria-label="{{ section.settings.slider_label }}">
+    <div class="swiper-wrapper">
+      {%- for i in (1..5) -%}
+        {%- assign slide_image = section.settings["slide_" | append: i | append: "_image"] -%}
+        {%- assign slide_link = section.settings["slider_link_" | append: i] -%}
+        {%- if slide_image != blank -%}
+          <div class="swiper-slide" aria-label="Slide {{ i }}">
+            <a href="{{ slide_link }}">
+              <img src="{{ slide_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide {{ i }}" loading="lazy">
             </a>
-          </li>
+          </div>
         {%- endif -%}
-        
-        {%- if section.settings.slide_2_image != blank -%}
-          <li class="splide__slide">
-            <a href="{{ section.settings.slide_2_link }}">
-            <img src="{{ section.settings.slide_2_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
-            </a>
-          </li>
-        {%- endif -%}
-        
-        {%- if section.settings.slide_3_image != blank -%}
-          <li class="splide__slide">
-            <a href="{{ section.settings.slide_3_link }}">
-            <img src="{{ section.settings.slide_3_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
-            </a>
-          </li>
-        {%- endif -%}
-        
-        {%- if section.settings.slide_4_image != blank -%}
-          <li class="splide__slide">
-            <a href="{{ section.settings.slide_4_link }}">
-            <img src="{{ section.settings.slide_4_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
-            </a>
-          </li>
-        {%- endif -%}
-        
-        {%- if section.settings.slide_5_image != blank -%}
-          <li class="splide__slide">
-            <a href="{{ section.settings.slide_5_link }}">
-            <img src="{{ section.settings.slide_5_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }}" loading="lazy">
-            </a>
-          </li>
-        {%- endif -%}
-      </ul>
+      {%- endfor -%}
     </div>
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Navigation Buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
   </div>
 </section>
 
-{{ 'splide.min.js' | asset_url | script_tag }}
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    new Splide('.splide', {
-      autoplay: true,
-      type: 'loop',
-      pauseOnHover: false,
-      pauseOnFocus: false,
-      interval: 5000,
-      speed: 2000,
-      padding: '15%',
-      gap: '0px',
-      focus: 'center',
-      breakpoints: {
-        749: {
-          gap: '5px',
-        }
-      }
-    }).mount();
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function () {
+  const swiper = new Swiper('.swiper', {
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    centeredSlides: true,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    // breakpoints: {
+    //   768: {
+    //     slidesPerView: 1,
+    //     spaceBetween: 30,
+    //   },
+    //   1024: {
+    //     slidesPerView: 1,
+    //     spaceBetween: 40,
+    //   },
+    // },
   });
-</script>
-
+});
+{% endjavascript %}
 
 {% schema %}
 {
@@ -161,7 +138,7 @@
       "type": "url",
       "id": "slider_link_5",
       "label": "スライダーリンク5"
-    },
+    }
   ],
   "presets": [
     {

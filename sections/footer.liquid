@@ -1,7 +1,6 @@
 <footer class="footer_block">
   <div class="footer_block_wrap">
     <div class="footer_block_cnt">
-
       <ul class="footer_menu">
         <li class="">
           <a href="">Q&A</a>
@@ -19,19 +18,29 @@
       <ul class="footer_sns">
         <li class="">
           <a href="https://www.instagram.com/kiraway_jpn/">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 50 50">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
               <path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z"></path>
             </svg>
           </a>
         </li>
       </ul>
-      <p><img src="{{ 'kiraway_icon.webp' | asset_url }}" alt="Kiraway Logo" class=""></p>
     </div>
+    <p class="k-w40 k-mWA"><img src="{{ 'kiraway_icon.webp' | asset_url }}" alt="Kiraway Logo" class="k-w100"></p>
   </div>
   <p class="footer_copy"> Kiraway company. All rights reserved</p>
 </footer>
 
 {% style %}
+  .k-w100 {
+    width: 100%;
+  }
+  .k-w40 {
+    width: 40%;
+  }
+  .k-mWA {
+    margin-left: auto;
+    margin-right: auto;
+  }
   .footer_block {
     background: #FFF;
     font-weight: bold;
@@ -42,9 +51,14 @@
     width: 60%;
     display: flex;
     flex-wrap: nowrap;
+    align-items: center;
     justify-content: space-between;
-    
   }
+  .footer_block_cnt {
+    width: 100%;
+
+  }
+
   .footer_menu {
     font-size: 18px;
   }
@@ -56,5 +70,10 @@
     padding: 2rem 0;
     text-align: center;
     margin-top: 3rem;
+  }
+  @media screen and (max-width: 768px) {
+    .footer_block_wrap {
+      align-items: end;
+    }
   }
 {% endstyle %}
