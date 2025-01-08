@@ -25,8 +25,12 @@
       "type": "slider_season",
       "settings": {}
     },
-    "featured-product": {
-      "type": "featured-product",
+    "featured_product": {
+      "type": "featured_product",
+      "settings": {}
+    },
+    "product_list": {
+      "type": "product_list",
       "settings": {}
     },
     "footer": {
@@ -39,8 +43,8 @@
     "slider_ad",
     "search",
     "slider_season",
-    "featured-product",
-    "product",
+    "featured_product",
+    "product_list",
     "footer"
   ]
 }

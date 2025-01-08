@@ -43,7 +43,7 @@
   .special_ttl {
     padding: 1rem;
     margin-bottom: 4rem;
-    font-size: 16px;
+    font-size: {{ section.settings.special_ttl1 | default: "16px"}};
     color: #464646;
   }
 
@@ -110,7 +110,7 @@
 
 {% schema %}
 {
-  "name": "Season Slider",
+  "name": "シーズナルスライド",
   "settings": [
     {
       "type": "image_picker",
@@ -126,6 +126,17 @@
       "type": "text",
       "id": "slide_text1",
       "label": "シーズナルタイトル1"
+    },
+    {
+      "type": "select",
+      "id": "special_ttl1",
+      "label": "タイトルフォントサイズ1",
+      "options": [
+        { "value": "12px", "label": "小 (12px)" },
+        { "value": "16px", "label": "中 (16px)" },
+        { "value": "20px", "label": "大 (20px)" },
+        { "value": "24px", "label": "特大 (24px)" }
+      ],
     },
     {
       "type": "image_picker",
