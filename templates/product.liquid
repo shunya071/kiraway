@@ -1,0 +1,124 @@
+{% section 'header' %}
+
+<div class="product-page-container">
+  <!-- 商品画像 -->
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+  </div>
+
+  <!-- 商品情報 -->
+  <div class="product-details">
+    <h1 class="product-title">{{ product.title }}</h1>
+    
+    <!-- 商品価格 -->
+    <p class="product-price">
+      {{ product.price | money }}
+    </p>
+
+    <!-- 商品在庫情報 -->
+    {% if product.available %}
+      <p class="product-availability in-stock">在庫あり</p>
+    {% else %}
+      <p class="product-availability out-of-stock">在庫切れ</p>
+    {% endif %}
+
+    <!-- 商品説明 -->
+    <div class="product-description">
+      {{ product.description }}
+    </div>
+
+    <!-- 購入フォーム -->
+    {% if product.available %}
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit" class="add-to-cart-btn">カートに追加</button>
+      </form>
+    {% else %}
+      <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
+    {% endif %}
+  </div>
+</div>
+
+{% section 'footer' %}
+
+<style>
+  .product-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    padding-top:10rem;
+  }
+
+  .product-image {
+    flex: 1 1 50%;
+    max-width: 45%;
+    padding-right: 3rem;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+
+  .product-details {
+    max-width: 50%;
+  }
+
+  .product-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .product-price {
+    font-size: 24px;
+    color: #464646;
+    margin-bottom: 15px;
+  }
+
+  .product-availability {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .in-stock {
+    color: green;
+  }
+
+  .out-of-stock {
+    color: red;
+  }
+
+  .product-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .add-to-cart-btn {
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .add-to-cart-btn:hover {
+    background: #0056b3;
+  }
+
+  .add-to-cart-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+</style>

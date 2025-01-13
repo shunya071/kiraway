@@ -1,30 +1,45 @@
-{% comment %}
-複数の商品を追加できる横スクロールセクション
-{% endcomment %}
-
 <section class="product_block">
   <div class="product_list">
-    <h2 class="productList_ttl">{{ section.settings.category }}</h2>
-    <a href="/">もっと見る</a>
+    <h2 class="">{{ section.settings.category }}</h2>
+    <button class="cta">
+      <span class="hover-underline-animation"> Shop now </span>
+      <svg
+        id="arrow-horizontal"
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="10"
+        viewBox="0 0 46 16"
+      >
+        <path
+          id="Path_10"
+          data-name="Path 10"
+          d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+          transform="translate(30)"
+        ></path>
+      </svg>
+    </button>
   </div>
-  <div class="featured-product-container">
+  <ul class="featured-product-container">
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.product] %}
       {% if product %}
-        <div class="featured-product">
+        <li class="featured-product">
           <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
           <h2 class="product_ttl">{{ product.title }}</h2>
-          <p class="product_price">{{ product.price | money }}</p>
-          <a href="{{ product.url }}" class="product_link">商品を見る</a>
-        </div>
+          <div class="product_box">
+            <p class="product_price">{{ product.price | money }}</p>
+            <a href="{{ product.url }}" class="product_link">商品を見る</a>
+          </div>
+        </li>
       {% endif %}
     {% endfor %}
-  </div>
+  </ul>
 </section>
 
 {% style %}
   .product_ttl {
-    padding: 1rem 0 1rem 1rem; 
+    padding: 1rem 0 1rem 1rem;
+    font-size: 13px;
   }
   .product_price {
     text-align: right;
@@ -32,29 +47,28 @@
   }
   .product_link {
     text-align: center;
-    border: 1px solid #FF7700;
+    border: 1px solid {{ section.settings.border_color | default: "#CE3A1D" }};
     border-radius: 30px;
     background: #fff;
-    padding: .7rem;
+    padding: .5rem;
     color: #FF7700;
     width: 80%;
     margin: 1rem auto;
     font-weight: bold;
     display: block;
-    font-size: 14px;
+    font-size: 13px;
   }
   .product_block {
-    background: #FFE3CF;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 3px 3px #00000033;
+    background: {{ section.settings.background_color | default: "#FFF" }};
     padding: 0 0.5rem 1rem 1rem;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .product_list {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 3rem;
     margin: 0 auto;
     width: 80%;
   }
@@ -63,16 +77,16 @@
     font-weight: bold;
     font-size: 18px;
     background: #fff;
-    border-radius: 15px;
-    box-shadow: inset 3px 3px 6px #00000033;
-    padding: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 3px solid {{ section.settings.cate_border | default: "#FF6200" }};
   }
   .product_list a {
-    color: #fff;
+    color: {{section.settings.btn_color | default: "#CE3A1D"}};
     font-weight: bold;
-    background: #FF7700;
+    background: #FFFFFF;
     display: block;
     padding: 1rem 0;
+    border: 1px solid {{ section.settings.moreBorder_color | default: "#CE3A1D" }};
     border-radius: 10px;
     width: 15%;
     position: relative;
@@ -95,6 +109,7 @@
   }
   .featured-product-container {
     display: flex;
+    justify-content: center;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     gap: 16px;
@@ -103,7 +118,11 @@
 
   .featured-product {
     flex: 0 0 auto;
-    width: 250px;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    max-width: 200px;
     scroll-snap-align: start;
     border-radius: 10px;
     background-color: #fff;
@@ -140,6 +159,56 @@
       font-size: 15px;
     }
   }
+  .cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: {{ section.settings.btn_color | default: "#FF6200" }};
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: {{ section.settings.moreBorder_color | default: "#FF6200" }};
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
 {% endstyle %}
 
 {% schema %}
@@ -163,6 +232,31 @@
       "type": "text",
       "id": "category",
       "label": "カテゴリ名"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "ボタン枠色"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "ボタン文字色"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色"
+    },
+    {
+      "type": "color",
+      "id": "moreBorder_color",
+      "label": "もっと見る枠色"
+    },
+    {
+      "type": "color",
+      "id": "cate_border",
+      "label": "カテゴリタイトル色"
     },
   ],
   "presets": [

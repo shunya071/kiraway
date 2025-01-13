@@ -1,0 +1,151 @@
+<!-- 検索結果ページ -->
+<style>
+/* 検索結果全体のスタイル */
+.search-results-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10rem 20px 20px;
+    font-family: Arial, sans-serif;
+    padding-bottom: 5rem;
+    background: #FFF;
+}
+
+/* 見出しのスタイル */
+.search-results-container h1 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* 商品リストのスタイル */
+.search-results-list {
+    display: grid;
+    justify-content: start;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 230px));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+/* 各商品カードのスタイル */
+.search-result-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.search-result-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 商品画像 */
+.search-result-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 商品タイトル */
+.search-result-item h2 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* 商品価格 */
+.search-result-item p {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* ボタンのスタイル */
+.search-result-item a {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.search-result-item a:hover {
+    background: #0056b3;
+}
+
+@media screen and (max-width: 768px) {
+    .search-results-list {
+        display: flex;
+        justify-content: space-between;
+    }
+    .search-results-container {
+        padding: 6rem 10px 10px;
+    }
+    .search-result-item a  {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+}
+</style>
+
+{% section 'header' %}
+
+<div class="search-results-container">
+{% if search.results_count > 0 %}
+    <h1>{{ search.results_count }} 件の検索結果</h1>
+    <ul class="search-results-list">
+        {% for item in search.results %}
+            {% if item.object_type == 'product' %}
+                <li class="search-result-item">
+                    <a href="{{ item.url }}">
+                        <img src="{{ item.featured_image | img_url: 'medium' }}" alt="{{ item.title }}">
+                        <h2 class="product_ttl">{{ item.title }}</h2>
+                        <p class="product_price">{{ item.price | money }}</p>
+                        <span>詳細を見る</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% else %}
+    <h1 style="margin-top: 5rem;">検索結果が見つかりませんでした。</h1>
+{% endif %}
+</div>
+
+{% section 'footer' %}
+
+<script>
+// 検索結果の動的表示（AJAX機能、オプション）
+document.querySelector('form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const query = document.querySelector('input[name="q"]').value;
+    fetch(`/search?q=${query}&view=json`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsContainer = document.querySelector('.search-results-list');
+            resultsContainer.innerHTML = ''; // 古い結果をクリア
+            data.results.forEach(product => {
+                if (product.object_type === 'product') {
+                    const item = `
+                        <li class="search-result-item">
+                            <a href="${product.url}">
+                                <img src="${product.featured_image}" alt="${product.title}">
+                                <h2>${product.title}</h2>
+                                <p>${product.price}</p>
+                            </a>
+                        </li>
+                    `;
+                    resultsContainer.innerHTML += item;
+                }
+            });
+        });
+});
+</script>

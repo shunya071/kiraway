@@ -4,19 +4,19 @@
 
 <section class="productList_block">
   <h2 class="productList_ttl">商品一覧</h2>
-  <div class="productList_cnt">
+  <ul class="productList_cnt">
     {% for block in section.blocks %}
       {% assign product = all_products[block.settings.product] %}
       {% if product %}
-        <div class="productList_item">
+        <li class="productList_item">
           <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
-          <h2>{{ product.title }}</h2>
-          <p>{{ product.price | money }}</p>
+          <h2 class="product_ttl">{{ product.title }}</h2>
+          <p class="product_price">{{ product.price | money }}</p>
           <a href="{{ product.url }}" class="product_link">商品を見る</a>
-        </div>
+        </li>
       {% endif %}
     {% endfor %}
-  </div>
+  </ul>
   <a href="/" class="product_list_link">もっと見る</a>
 </section>
 
@@ -36,12 +36,13 @@
     text-align: center;
   }
   .product_list_link {
-    color: #fff;
+    color: {{ section.settings.product_btn | default: "#CE3A1D" }};
     font-weight: bold;
-    background: #FF7700;
+    background: #FFF;
     display: block;
     padding: 1rem 0;
     border-radius: 10px;
+    border: 1px solid {{ section.settings.border_color | default: "#CE3A1D" }};
     width: 20%;
     margin: 2rem auto;
     position: relative;
@@ -64,6 +65,7 @@
   }
   .productList_cnt {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 16px;
     width: 90%;
@@ -72,8 +74,8 @@
   }
 
   .productList_item {
-    flex: 0 0 auto; /* 横並びを維持 */
-    width: 250px; /* 商品ブロックの幅を設定 */
+    flex: 0 0 auto;
+    width: 200px;
     scroll-snap-align: start;
     border-radius: 10px;
     background-color: #fff;
@@ -88,7 +90,7 @@
 
   @media screen and (max-width: 768px) {
     .productList_item {
-      width: 45%;
+      width: 47%;
     }
     .product_list_link {
       width: 50%;
@@ -97,7 +99,7 @@
       padding: 0;
       padding-top: 2rem;
       width: 100%;
-      justify-content: center;
+      justify-content: space-between;
     }
     .productList_block {
       padding: 0 1rem 1rem;
@@ -120,6 +122,18 @@
         },
       ],
     },
+  ],
+  "settings": [
+    {
+      "type": "color",
+      "id": "product_btn",
+      "label": "商品一覧文字色"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "商品一覧枠色"
+    }
   ],
   "presets": [
     {

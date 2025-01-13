@@ -1,13 +1,13 @@
 {% style %}
   .scroll_content { /* リスト全体のスタイル */
     display: flex;
-    max-width: 100vw;
+    justify-content: center;
     padding: 0 0 2rem 1rem;
     overflow-x: auto;
   }
 
   .scroll_content li { /* 各リストのスタイル */
-    width: slide_6_image0%;
+    width: 224px;
     padding: 0;
     margin: 1rem .5rem;
     flex-shrink: 0;
@@ -41,21 +41,26 @@
   }
 
   .special_ttl {
-    padding: 1rem;
-    margin-bottom: 4rem;
+    padding: 1.2rem 0.7rem 2rem 1.4rem;
+    /* margin-bottom: 4rem; */
     font-size: {{ section.settings.special_ttl1 | default: "16px"}};
     color: #464646;
   }
 
-  @media screen and (min-width: 450px) {
+  .k-w90 {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 768px) {
 
     .scroll_content li {
-      width: 20%;
+      width: 80%;
     }
 
 }
 {% endstyle %}
-<section class="kira_block">
+<section class="k-w90">
   <ul class="scroll_content">
     {%- if section.settings.slide_1_image != blank -%}
     <li>

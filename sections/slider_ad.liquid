@@ -56,10 +56,13 @@
   .swiper-pagination {
     bottom: 10px !important;
   }
+  .swiper_cnt {
+    padding-top: 50px;
+  }
 }
 {% endstyle %}
 
-<section class="kira_block">
+<section class="swiper_cnt">
   <div class="swiper" aria-label="{{ section.settings.slider_label }}">
     <div class="swiper-wrapper">
       {% if section.settings.slide_1_image != blank %}
