@@ -10,53 +10,76 @@
   <div class="product-details">
     <h1 class="product-title">{{ product.title }}</h1>
     
-    <!-- 商品価格 -->
-    <p class="product-price">
-      {{ product.price | money }}
-    </p>
-
-    <!-- 商品在庫情報 -->
-    {% if product.available %}
-      <p class="product-availability in-stock">在庫あり</p>
-    {% else %}
-      <p class="product-availability out-of-stock">在庫切れ</p>
-    {% endif %}
-
-    <!-- 商品説明 -->
-    <div class="product-description">
-      {{ product.description }}
+    <div class="product-details-cnt">
+      <!-- 商品価格 -->
+      <p class="product-price">
+        {{ product.price | money }}
+      </p>
+  
+      <!-- 商品在庫情報 -->
+      {% if product.available %}
+        <p class="product-availability in-stock">在庫あり</p>
+      {% else %}
+        <p class="product-availability out-of-stock">在庫切れ</p>
+      {% endif %}
+  
+      <!-- 購入フォーム -->
+      {% if product.available %}
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+          <button type="submit" class="add-to-cart-btn">カートに追加</button>
+        </form>
+      {% else %}
+        <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
+      {% endif %}
     </div>
-
-    <!-- 購入フォーム -->
-    {% if product.available %}
-      <form method="post" action="/cart/add">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-        <button type="submit" class="add-to-cart-btn">カートに追加</button>
-      </form>
-    {% else %}
-      <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
-    {% endif %}
   </div>
 </div>
+
+<section class="product-details-txt">
+<p class="product_gray">商品説明</p>
+<h2 class="product-title">{{ product.title }}</h2>
+  <!-- 商品説明 -->
+  <div class="product-description">
+    {{ product.description }}
+  </div>
+</section>
 
 {% section 'footer' %}
 
 <style>
+  .product_gray {
+    color: rgba(0, 0, 0, 0.3);
+    font-size: 1.3rem;
+    line-height: 1.23;
+    margin-bottom: 24px;
+  }
+  @media screen and (min-width: 1024px) {
+    .product_gray {
+        margin-bottom: 32px;
+    }
+}
+  .product-details-txt {
+    max-width: 1200px;
+    padding: 0 40px;
+    margin: 0 auto;
+  }
   .product-page-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     max-width: 1200px;
+    width: 90%;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    padding-top:10rem;
+    padding-top: 5rem;
   }
 
   .product-image {
     flex: 1 1 50%;
-    max-width: 45%;
-    padding-right: 3rem;
+    max-width: 50%;
+    padding-right: 5rem;
   }
 
   .product-image img {
@@ -74,7 +97,7 @@
   .product-title {
     font-size: 1.7rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 3rem auto 10px;
     color: #333;
   }
 
@@ -98,7 +121,7 @@
   }
 
   .product-description {
-    margin-bottom: 20px;
+    margin: 24px auto 20px;
     line-height: 1.6;
     color: #555;
   }
