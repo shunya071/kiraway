@@ -1,251 +1,47 @@
 {% section 'header' %}
-{% render 'breadcrumb' %}
+
 <div class="product-page-container">
   <!-- 商品画像 -->
-  <div class="product-images">
-    <div class="main-image">
-      <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
-    </div>
-    <div class="image-thumbnails">
-      {% for image in product.images %}
-        <img src="{{ image | img_url: 'small' }}" alt="{{ product.title }}">
-      {% endfor %}
-    </div>
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
   </div>
 
   <!-- 商品情報 -->
   <div class="product-details">
     <h1 class="product-title">{{ product.title }}</h1>
-    <p class="product-price">{{ product.price | money }}</p>
+    
+    <!-- 商品価格 -->
+    <p class="product-price">
+      {{ product.price | money }}
+    </p>
 
-    <!-- 在庫情報 -->
+    <!-- 商品在庫情報 -->
     {% if product.available %}
       <p class="product-availability in-stock">在庫あり</p>
-      <div class="quantity-container">
-        <label for="quantity">個数:</label>
-        <select id="quantity" name="quantity" class="quantity-selector">
-          {% for i in (1..10) %}
-            <option value="{{ i }}">{{ i }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      
-      <form method="post" action="/cart/add" class="add-to-cart-form">
-        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-        <button type="submit" class="add-to-cart-btn">カートに入れる</button>
-      </form>
     {% else %}
       <p class="product-availability out-of-stock">在庫切れ</p>
-      <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
     {% endif %}
 
-  </div>
-</div>
-
-<section class="product-details-cnt">
-  <h2 class="product_gray">商品説明</h2>
-  <!-- 商品説明 -->
-  <div class="product-description">
-    <p class="title">{{ product.title }}</p>
-    {{ product.description }}
-  </div>
-</section>
-
-<div class="product-reviews">
-  <h2 class="reviews-title">レビュー <span class="review-count">{{ product.reviews_count }}</span>件</h2>
-  <div class="reviews-summary">
-    <div class="average-rating">
-      <span class="stars">{{ product.average_rating | times: 20 }}%</span>
-      <span class="rating-value">{{ product.average_rating }}</span>
+    <!-- 商品説明 -->
+    <div class="product-description">
+      {{ product.description }}
     </div>
-    <button class="post-review-btn">レビューを投稿する</button>
+
+    <!-- 購入フォーム -->
+    {% if product.available %}
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        <button type="submit" class="add-to-cart-btn">カートに追加</button>
+      </form>
+    {% else %}
+      <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
+    {% endif %}
   </div>
-  <div class="reviews-list">
-    {% for review in product.reviews %}
-      <div class="review">
-        <div class="review-header">
-          <div class="review-rating">
-            {% for i in (1..5) %}
-              {% if i <= review.rating %}
-                ★
-              {% else %}
-                ☆
-              {% endif %}
-            {% endfor %}
-          </div>
-          <span class="review-date">{{ review.date | date: "%Y/%m/%d" }}</span>
-        </div>
-        <h3 class="review-title">{{ review.title }}</h3>
-        <p class="review-content">{{ review.content }}</p>
-        <p class="review-author">- {{ review.author }}</p>
-        <div class="review-actions">
-          <a href="#" class="report-link">不適切を通報する</a>
-          <span class="useful-count">役に立った {{ review.useful_count }}</span>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
-  <a href="#" class="view-all-reviews">すべてのレビューを見る</a>
 </div>
+
+{% section 'footer' %}
+
 <style>
-  .add-to-cart-form {
-    display: flex;
-    justify-content: flex-end;
-    
-  }
-
-  .quantity-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-  }
-  
-  .quantity-container label {
-    font-size: 1rem;
-    margin-right: 10px;
-    color: #333;
-  }
-  
-  .quantity-selector {
-    padding: 5px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    color: #333;
-  }
-  
-  .add-to-cart-btn {
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-
-  .product-reviews {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-top: 1px solid #ddd;
-    margin-top: 5rem;
-  }
-  
-  .reviews-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .reviews-summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .average-rating .stars {
-    color: #ffa500;
-    font-size: 1.2rem;
-  }
-  
-  .average-rating .rating-value {
-    margin-left: 10px;
-    font-size: 1rem;
-  }
-  
-  .post-review-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9rem;
-  }
-  
-  .reviews-list .review {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
-  }
-  
-  .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .review-rating {
-    color: #ffa500;
-    font-size: 1rem;
-  }
-  
-  .review-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 5px 0;
-  }
-  
-  .review-content {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-  }
-  
-  .review-author {
-    font-size: 0.8rem;
-    color: #666;
-  }
-  
-  .review-actions {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-  }
-  
-  .report-link {
-    color: #007bff;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
-  .useful-count {
-    color: #333;
-  }
-  
-  .view-all-reviews {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: #007bff;
-    text-decoration: underline;
-  }
-
-  :root {
-    --text-color: {{ settings.text_color | default: '#333' }};
-    --highlight-color: {{ settings.highlight_color | default: '#ff6600' }};
-    --title-font-size: {{ settings.title_font_size | default: 1.7 }}rem;
-  }
-
-  .product_gray {
-    font-size: 13px;
-    color: #9d9d9d;
-    font-weight: bold;
-    margin: 2rem auto;
-  }
-
-  .product-description .title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 2rem auto;
-  }
-
-  .product-details-cnt {
-    width: 90%;
-    margin: 0 auto;
-  }
-
   .product-page-container {
     display: flex;
     flex-wrap: wrap;
@@ -253,91 +49,76 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    margin-top: 2rem;
     font-family: Arial, sans-serif;
-    {% comment %} background: #ff6200; {% endcomment %}
+    padding-top:10rem;
   }
-  
-  .product-images {
+
+  .product-image {
     flex: 1 1 50%;
-    padding-right: 20px;
+    max-width: 45%;
+    padding-right: 3rem;
   }
-  
-  .main-image img {
+
+  .product-image img {
     width: 100%;
+    height: auto;
     border-radius: 8px;
-    border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .image-thumbnails {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  
-  .image-thumbnails img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
   }
-  
+
   .product-details {
-    flex: 1 1 50%;
-    padding: 20px;
+    max-width: 50%;
   }
-  
+
   .product-title {
-    font-size: var(--title-font-size);
+    font-size: 1.7rem;
     font-weight: bold;
-    color: var(--text-color);
-    margin: 5rem auto 3rem;
+    margin-bottom: 10px;
+    color: #333;
   }
-  
+
   .product-price {
-    font-size: 2.3rem;
-    color: var(--highlight-color);
+    font-size: 24px;
+    color: #464646;
+    margin-bottom: 15px;
   }
-  
+
   .product-availability {
-    font-size: 1rem;
-    margin-bottom: 4rem;
+    font-size: 16px;
+    margin-bottom: 20px;
   }
-  
+
   .in-stock {
     color: green;
   }
-  
+
   .out-of-stock {
     color: red;
   }
-  
+
+  .product-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #555;
+  }
+
   .add-to-cart-btn {
-    background: var(--highlight-color);
-    color: white;
+    background: #007BFF;
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background 0.3s;
   }
-  
+
   .add-to-cart-btn:hover {
-    background: darken(var(--highlight-color), 10%);
+    background: #0056b3;
   }
-  
+
   .add-to-cart-btn.disabled {
     background: #ccc;
     cursor: not-allowed;
   }
-  
-  .product-description h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
 </style>
-
-{% section 'footer' %}
