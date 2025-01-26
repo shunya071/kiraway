@@ -16,7 +16,7 @@
         </li>
       </ul>
       <ul class="footer_logo">
-        <li class="k-w60">
+        <li class="k-w35">
           <img src="{{ 'kaguya_store.webp' | asset_url }}" alt="kaguya_store" class="k-w100">
         </li>
         <li class="k-w20">
@@ -42,8 +42,8 @@
   .k-w40 {
     width: 40%;
   }
-  .k-w60 {
-    width: 60%;
+  .k-w35 {
+    width: 35%;
   }
   .k-mWA {
     margin-left: auto;
@@ -98,12 +98,27 @@
   }
   .footer_copy {
     border-top: 1px solid #464646;
-    padding: 2rem 0;
+    padding: 1rem 0;
     text-align: center;
+    font-size: 14px;
+    font-weight: normal;
   }
   @media screen and (max-width: 768px) {
+    .footer_menu {
+      flex-wrap: wrap;
+    }
+    .footer_menu li {
+      border: none;
+      width: 100%;
+      padding: 0.5rem 1.5rem;
+    }
     .footer_block_wrap {
       align-items: end;
+      width: 100%;
+    }
+    .footer_copy {
+      padding: .5rem;
+      font-size: 13px;
     }
   }
 {% endstyle %}
