@@ -1,8 +1,3 @@
-{% style %}
-  header {
-    background-color: {{ section.settings.background_color | default: "#fff" }}
-  }
-{% endstyle %}
 <header>
   <div class="header_wrap">
     <div class="logotype">
@@ -68,6 +63,9 @@
   </script>
 
 {% style %}
+header {
+  background-color: {{ section.settings.background_color | default: "#fff" }}
+}
 .input-wrapper {
   display: flex;
   align-items: center;

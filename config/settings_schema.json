@@ -1,3 +1,19 @@
 [
-
+  {
+    "name": "Product Template",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent Color",
+        "default": "#00A86B"
+      },
+      {
+        "type": "color",
+        "id": "secondary_bg_color",
+        "label": "Secondary Background Color",
+        "default": "#F5F5F5"
+      }
+    ]
+  }
 ]
