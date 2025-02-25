@@ -1,0 +1,248 @@
+{% section 'header' %}
+
+<div class="product-page-container product">
+  <!-- 商品画像 -->
+  <div class="product-image">
+    <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+  </div>
+
+  <!-- 商品情報 -->
+  <div class="product-details">
+    <h1 class="product-title">{{ product.title }}</h1>
+    
+    <!-- 商品価格 -->
+    <p class="product-price">
+      {{ product.price | money }}
+    </p>
+
+    <!-- 商品在庫情報 -->
+    {% if product.available %}
+      <p class="product-availability in-stock">在庫あり</p>
+    {% else %}
+      <p class="product-availability out-of-stock">在庫切れ</p>
+    {% endif %}
+
+    <!-- 商品説明 -->
+    <div class="product-description">
+      {{ product.description }}
+    </div>
+
+    <!-- 購入フォーム -->
+    {% if product.available %}
+      <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+        {% form 'product', product %}
+          <button type="submit" name="add" class="add-to-cart-btn"
+            {% if product.selected_or_first_available_variant.available == false %}disabled{% endif %}
+            data-product-id="{{ product.id }}"
+          >
+            <span class="add-to-cart-text">
+              {%- if product.selected_or_first_available_variant.available -%}
+                カートに追加
+              {%- else -%}
+                売り切れ
+              {%- endif -%}
+            </span>
+            <div class="loading-overlay__spinner hidden">
+              <svg class="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
+              </svg>
+            </div>
+          </button>
+        {% endform %}
+      </form>
+    {% else %}
+      <button class="add-to-cart-btn disabled" disabled>在庫切れ</button>
+    {% endif %}
+  </div>
+  </div>
+
+
+{% section 'footer' %}
+
+<script>
+  document.querySelector('.add-to-cart-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const form = this.closest('form');
+    const button = this;
+    const spinner = button.querySelector('.loading-overlay__spinner');
+    
+    button.classList.add('loading');
+    spinner.classList.remove('hidden');
+    
+    fetch('/cart/add.js', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // カートページに遷移
+      window.location.href = '{{ routes.cart_url }}';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      // エラー表示処理
+    });
+  });
+  </script>
+
+{% style %}
+  .product-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    padding-top:10rem;
+  }
+
+  .product-image {
+    flex: 1 1 50%;
+    max-width: 45%;
+    padding-right: 3rem;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+  }
+
+  .product-details {
+    max-width: 50%;
+  }
+
+  .product-title {
+    font-size: 1.7rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .product-price {
+    font-size: 24px;
+    color: #464646;
+    margin-bottom: 15px;
+  }
+
+  .product-availability {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  .in-stock {
+    color: green;
+  }
+
+  .out-of-stock {
+    color: red;
+  }
+
+  .product-description {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .add-to-cart-btn {
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .add-to-cart-btn:hover {
+    background: #0056b3;
+  }
+
+  .add-to-cart-btn.disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  .add-to-cart-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .add-to-cart-btn:hover {
+    background-color: #333;
+  }
+  
+  .add-to-cart-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .add-to-cart-btn.loading .add-to-cart-text {
+    opacity: 0;
+  }
+  
+  .loading-overlay__spinner {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .loading-overlay__spinner.hidden {
+    display: none;
+  }
+  
+  .spinner {
+    animation: rotate 2s linear infinite;
+  }
+  
+  .path {
+    stroke: #fff;
+    stroke-linecap: round;
+    animation: dash 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes rotate {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+{% endstyle %}
