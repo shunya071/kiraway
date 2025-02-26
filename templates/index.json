@@ -37,6 +37,9 @@
     },
     "slider_season": {
       "type": "slider_season",
+      "custom_css": [
+        ".scroll_content {justify-content: start;}"
+      ],
       "settings": {
         "slide_1_image": "shopify://shop_images/2025-01-09_2.28.21.png",
         "slider_link_1": "",
@@ -51,12 +54,11 @@
         "slide_4_image": "shopify://shop_images/2025-01-09_2.28.43.png",
         "slider_link_4": "",
         "slide_text4": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります",
-        "slide_5_image": "shopify://shop_images/2025-01-09_2.28.11.png",
+        "slide_5_image": "shopify://shop_images/2025-01-09_2.28.31.png",
         "slider_link_5": "",
-        "slide_text5": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります",
-        "slide_6_image": "shopify://shop_images/2025-01-09_2.28.31.png",
+        "slide_text5": "",
         "slider_link_6": "",
-        "slide_text6": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります"
+        "slide_text6": ""
       }
     },
     "featured_product": {
@@ -123,6 +125,72 @@
       ],
       "settings": {
         "category": "日本の伝統品一覧",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_NtT3NT": {
+      "type": "featured_product",
+      "blocks": {
+        "product_XrnaL6": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_XrnaL6"
+      ],
+      "settings": {
+        "category": "",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_MfGUUD": {
+      "type": "featured_product",
+      "blocks": {
+        "product_6tm9cy": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_6tm9cy"
+      ],
+      "settings": {
+        "category": "",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_YbrdNp": {
+      "type": "featured_product",
+      "blocks": {
+        "product_URqfpC": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_URqfpC"
+      ],
+      "settings": {
+        "category": "",
         "border_color": "",
         "btn_color": "",
         "background_color": "",
@@ -314,6 +382,9 @@
     "search",
     "slider_season",
     "featured_product",
+    "featured_product_NtT3NT",
+    "featured_product_MfGUUD",
+    "featured_product_YbrdNp",
     "featured_product_PPBPyh",
     "product_list",
     "footer"

@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "slider_ad": {
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "play": "Play slideshow",
+      "pause": "Pause slideshow",
+      "slide": "Slide {{ number }}",
+      "of": "of {{ total }}"
+    }
+  }
+}

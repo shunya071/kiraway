@@ -3,11 +3,11 @@
   position: relative;
 }
 .swiper-slide {
-  width: 100% !important;
+/*  width: 100% !important; */
   max-height: 600px !important;
 }
 .swiper-slide img {
-  width: 100%;
+  width: 100%; 
   height: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -114,8 +114,23 @@ document.addEventListener('DOMContentLoaded', function () {
       disableOnInteraction: false,
     },
     loop: true,
-    slidesPerView: 1,
     centeredSlides: true,
+    slidesPerView: 1.2,
+    breakpoints: {
+      768: {
+        slidesPerView: 1.2,
+        spaceBetween: 50,
+      }
+    },
+    spaceBetween: 20,
+    effect: 'coverflow',
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    },
     pagination: {
       el: '.swiper-pagination',
       clickable: true,
