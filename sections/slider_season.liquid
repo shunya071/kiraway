@@ -1,0 +1,231 @@
+{% style %}
+  .scroll_content { /* リスト全体のスタイル */
+    display: flex;
+    justify-content: center;
+    padding: 0 0 2rem 1rem;
+    overflow-x: auto;
+  }
+
+  .scroll_content li { /* 各リストのスタイル */
+    width: 224px;
+    padding: 0;
+    margin: 1rem .5rem;
+    flex-shrink: 0;
+    list-style: none;
+    box-shadow: 0 0 4px #00000033;
+    border-radius: 10px;
+  }
+
+  .scroll_content img { /* 画像のスタイル */
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .scroll_content::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scroll_content::-webkit-scrollbar-thumb {
+    background: #aaa; /* ツマミの色 */
+    border-radius: 6px; /* ツマミ両端の丸み */
+  }
+
+  .scroll_content::-webkit-scrollbar-track {
+    background: #ddd; /* トラックの色 */
+    border-radius: 6px; /* トラック両端の丸み */
+  }
+
+  .k-bor10 {
+    border-radius: 10px 10px 0 0;
+  }
+
+  .special_ttl {
+    padding: 1.2rem 0.7rem 2rem 1.4rem;
+    /* margin-bottom: 4rem; */
+    font-size: {{ section.settings.special_ttl1 | default: "16px"}};
+    color: #464646;
+  }
+
+  .k-w90 {
+    /* width: 90%; */
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .scroll_content {
+      justify-content: start;
+    }
+
+    .scroll_content li {
+      width: 55%;
+    }
+
+}
+{% endstyle %}
+<section class="k-w90">
+  <ul class="scroll_content">
+    {%- if section.settings.slide_1_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_1_link }}">
+        <img src="{{ section.settings.slide_1_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text1 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_2_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_2_link }}">
+        <img src="{{ section.settings.slide_2_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text2 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_3_image != blank -%}
+    <li>
+      <a href="{{ section.settings.slide_3_link }}">
+        <img src="{{ section.settings.slide_3_image | img_url: 'master' }}" class="k-bor10">
+        <p class="special_ttl">{{ section.settings.slide_text3 }}</p>
+      </a>
+    </li>
+    {% endif %}
+    {%- if section.settings.slide_4_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_4_link }}">
+          <img src="{{ section.settings.slide_4_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text4 }}</p>
+        </a>
+      </li>
+    {% endif %}
+    {%- if section.settings.slide_5_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_5_link }}">
+          <img src="{{ section.settings.slide_5_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text5 }}</p>
+        </a>
+      </li>
+    {% endif %}
+    {%- if section.settings.slide_6_image != blank -%}
+      <li>
+        <a href="{{ section.settings.slide_6_link }}">
+          <img src="{{ section.settings.slide_6_image | img_url: 'master' }}" class="k-bor10">
+          <p class="special_ttl">{{ section.settings.slide_text6 }}</p>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</section>
+
+{% schema %}
+{
+  "name": "シーズナルスライド",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "slide_1_image",
+      "label": "シーズナル1 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_1",
+      "label": "シーズナルリンク1"
+    },
+    {
+      "type": "text",
+      "id": "slide_text1",
+      "label": "シーズナルタイトル1"
+    },
+    {
+      "type": "select",
+      "id": "special_ttl1",
+      "label": "タイトルフォントサイズ1",
+      "options": [
+        { "value": "12px", "label": "小 (12px)" },
+        { "value": "16px", "label": "中 (16px)" },
+        { "value": "20px", "label": "大 (20px)" },
+        { "value": "24px", "label": "特大 (24px)" }
+      ],
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_image",
+      "label": "シーズナル2 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_2",
+      "label": "シーズナルリンク2"
+    },
+    {
+      "type": "text",
+      "id": "slide_text2",
+      "label": "シーズナルタイトル2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_image",
+      "label": "シーズナル3 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_3",
+      "label": "シーズナルリンク3"
+    },
+    {
+      "type": "text",
+      "id": "slide_text3",
+      "label": "シーズナルタイトル3"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_4_image",
+      "label": "シーズナル4 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_4",
+      "label": "シーズナルリンク4"
+    },
+    {
+      "type": "text",
+      "id": "slide_text4",
+      "label": "シーズナルタイトル4"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_5_image",
+      "label": "シーズナル5 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_5",
+      "label": "シーズナルリンク5"
+    },
+    {
+      "type": "text",
+      "id": "slide_text5",
+      "label": "シーズナルタイトル5"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_6_image",
+      "label": "シーズナル6 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_6",
+      "label": "シーズナルリンク6"
+    },
+    {
+      "type": "text",
+      "id": "slide_text6",
+      "label": "シーズナルタイトル6"
+    },
+  ],
+  "presets": [
+    {
+      "name": "シーズナルバナー"
+    }
+  ]
+}
+{% endschema %}

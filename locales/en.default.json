@@ -1,0 +1,66 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "menu": "Menu",
+      "search": "Search",
+      "open": "Open"
+    },
+    "navigation": {
+      "account": "Account",
+      "cart": "Cart",
+      "menu": "Menu",
+      "search": "Search",
+      "wishlist": "Wishlist"
+    },
+    "social": {
+      "share_on_facebook": "Share on Facebook",
+      "share_on_twitter": "Tweet on Twitter",
+      "share_on_pinterest": "Pin on Pinterest",
+      "follow_on_instagram": "Follow on Instagram"
+    }
+  },
+  "sections": {
+    "slider_ad": {
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "play": "Play slideshow",
+      "pause": "Pause slideshow",
+      "slide": "Slide {{ number }}",
+      "of": "of {{ total }}"
+    },
+    "header": {
+      "menu": "Menu",
+      "cart_count": {
+        "one": "{{ count }} item",
+        "other": "{{ count }} items"
+      }
+    },
+    "footer": {
+      "newsletter_email": "Email address",
+      "subscribe": "Subscribe",
+      "copyright": "© {{ year }} Your Store Name. All rights reserved."
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "quantity": "Quantity",
+      "price": "Price",
+      "regular_price": "Regular price"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Shopping Cart",
+      "empty": "Your cart is currently empty",
+      "subtotal": "Subtotal",
+      "total": "Total",
+      "checkout": "Checkout"
+    }
+  }
+} 

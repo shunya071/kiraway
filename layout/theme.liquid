@@ -3,19 +3,26 @@
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>{{ page_title }}</title>      
+      <title>Kaguya Store | {{ page_title }}</title>
+      <link rel="icon" href="{{ 'kaguya_logo.webp' | asset_url }}">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"/>
-      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
       {{ 'header.css' | asset_url | stylesheet_tag }}
-      {{ 'ad.css' | asset_url | stylesheet_tag }}
       {{ 'main.js' | asset_url | script_tag }}
+      <!-- Swiper.js CDN -->
+      <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
       <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
       {{ content_for_header }}
     </head>
     
     <body>
       {{ content_for_layout }}
-
     </body>
   </html>
-  
+
+  {% style %}
+  body {
+    background-color: {{ section.settings.background_color | default: "#fff" }};
+  }
+  {% endstyle %}
+
+

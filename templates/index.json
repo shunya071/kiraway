@@ -10,22 +10,383 @@
 {
   "sections": {
     "header": {
-      "type": "header"
-    },
-    "ad": {
-      "type": "ad",
+      "type": "header",
       "settings": {
-        "slider_padding": 2,
-        "font_size": 16,
-        "slider_image_1": "slider_image_1.png",
-        "slider_link_1": "/collection1",
-        "slider_image_2": "slider_image_2.png",
-        "slider_link_2": "/collection2"
+        "background_color": ""
+      }
+    },
+    "slider_ad": {
+      "type": "slider_ad",
+      "settings": {
+        "slider_label": "広告スライダー",
+        "slide_1_image": "shopify://shop_images/2025-01-09_2.24.16.png",
+        "slider_link_1": "",
+        "slide_2_image": "shopify://shop_images/2025-01-09_2.22.31.png",
+        "slider_link_2": "",
+        "slide_3_image": "shopify://shop_images/2025-01-09_2.23.03.png",
+        "slider_link_3": "",
+        "slide_4_image": "shopify://shop_images/2025-01-09_2.22.48.png",
+        "slider_link_4": "",
+        "slide_5_image": "shopify://shop_images/2025-01-09_2.24.22.png",
+        "slider_link_5": ""
+      }
+    },
+    "search": {
+      "type": "search",
+      "settings": {}
+    },
+    "slider_season": {
+      "type": "slider_season",
+      "custom_css": [
+        ".scroll_content {justify-content: start;}"
+      ],
+      "settings": {
+        "slide_1_image": "shopify://shop_images/2025-01-09_2.28.21.png",
+        "slider_link_1": "",
+        "slide_text1": "ここにテキストが入りますここにテキストが入ります",
+        "special_ttl1": "12px",
+        "slide_2_image": "shopify://shop_images/2025-01-09_2.28.31.png",
+        "slider_link_2": "",
+        "slide_text2": "ここにテキストが入りますここにテキストが入ります",
+        "slide_3_image": "shopify://shop_images/2025-01-09_2.28.21.png",
+        "slider_link_3": "",
+        "slide_text3": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります",
+        "slide_4_image": "shopify://shop_images/2025-01-09_2.28.43.png",
+        "slider_link_4": "",
+        "slide_text4": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります",
+        "slide_5_image": "shopify://shop_images/2025-01-09_2.28.31.png",
+        "slider_link_5": "",
+        "slide_text5": "",
+        "slider_link_6": "",
+        "slide_text6": ""
+      }
+    },
+    "featured_product": {
+      "type": "featured_product",
+      "blocks": {
+        "product_WjiEhN": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_ENm6T6": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_Kh6CUE": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_T6mqjH": {
+          "type": "product",
+          "settings": {
+            "product": "食器ギフトセット"
+          }
+        },
+        "product_ziW6EJ": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        },
+        "product_6EhHNX": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_qNEmmr": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_eTBf9T": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        }
+      },
+      "block_order": [
+        "product_WjiEhN",
+        "product_ENm6T6",
+        "product_Kh6CUE",
+        "product_T6mqjH",
+        "product_ziW6EJ",
+        "product_6EhHNX",
+        "product_qNEmmr",
+        "product_eTBf9T"
+      ],
+      "settings": {
+        "category": "日本の伝統品一覧",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_NtT3NT": {
+      "type": "featured_product",
+      "blocks": {
+        "product_XrnaL6": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_XrnaL6"
+      ],
+      "settings": {
+        "category": "",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_MfGUUD": {
+      "type": "featured_product",
+      "blocks": {
+        "product_6tm9cy": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_6tm9cy"
+      ],
+      "settings": {
+        "category": "",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_YbrdNp": {
+      "type": "featured_product",
+      "blocks": {
+        "product_URqfpC": {
+          "type": "product",
+          "settings": {
+            "product": ""
+          }
+        }
+      },
+      "block_order": [
+        "product_URqfpC"
+      ],
+      "settings": {
+        "category": "",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "featured_product_PPBPyh": {
+      "type": "featured_product",
+      "blocks": {
+        "product_ygKzcN": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_UNjVdK": {
+          "type": "product",
+          "settings": {
+            "product": "テスト商品テスト商品"
+          }
+        },
+        "product_9Y4rrc": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_PaPNzd": {
+          "type": "product",
+          "settings": {
+            "product": "食器ギフトセット"
+          }
+        },
+        "product_YNt6Uy": {
+          "type": "product",
+          "settings": {
+            "product": "食器ギフトセット"
+          }
+        },
+        "product_CPfJJH": {
+          "type": "product",
+          "settings": {
+            "product": "テスト商品テスト商品"
+          }
+        },
+        "product_VeVxi3": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        },
+        "product_4fqLMd": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_3KBLQh": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        }
+      },
+      "block_order": [
+        "product_ygKzcN",
+        "product_UNjVdK",
+        "product_9Y4rrc",
+        "product_PaPNzd",
+        "product_YNt6Uy",
+        "product_CPfJJH",
+        "product_VeVxi3",
+        "product_4fqLMd",
+        "product_3KBLQh"
+      ],
+      "settings": {
+        "category": "日本のお菓子",
+        "border_color": "",
+        "btn_color": "",
+        "background_color": "",
+        "moreBorder_color": "",
+        "cate_border": ""
+      }
+    },
+    "product_list": {
+      "type": "product_list",
+      "blocks": {
+        "product_fNTb6i": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_UJ6cJq": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_BXD6RK": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        },
+        "product_Fnpqmc": {
+          "type": "product",
+          "settings": {
+            "product": "テスト商品テスト商品"
+          }
+        },
+        "product_QMMaTx": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        },
+        "product_mPWt83": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_AryBYV": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_6QDt4B": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_x7i3pX": {
+          "type": "product",
+          "settings": {
+            "product": "テスト商品テスト商品"
+          }
+        },
+        "product_36paz3": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-2"
+          }
+        },
+        "product_zi6jaE": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ-1"
+          }
+        },
+        "product_UiXaVz": {
+          "type": "product",
+          "settings": {
+            "product": "お菓子詰め合わせ"
+          }
+        }
+      },
+      "block_order": [
+        "product_fNTb6i",
+        "product_UJ6cJq",
+        "product_BXD6RK",
+        "product_Fnpqmc",
+        "product_QMMaTx",
+        "product_mPWt83",
+        "product_AryBYV",
+        "product_6QDt4B",
+        "product_x7i3pX",
+        "product_36paz3",
+        "product_zi6jaE",
+        "product_UiXaVz"
+      ],
+      "settings": {
+        "product_btn": "",
+        "border_color": ""
       }
     },
     "footer": {
       "type": "footer",
+      "settings": {}
     }
   },
-  "order": ["header", "ad", "footer"]
+  "order": [
+    "header",
+    "slider_ad",
+    "search",
+    "slider_season",
+    "featured_product",
+    "featured_product_NtT3NT",
+    "featured_product_MfGUUD",
+    "featured_product_YbrdNp",
+    "featured_product_PPBPyh",
+    "product_list",
+    "footer"
+  ]
 }

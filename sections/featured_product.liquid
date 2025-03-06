@@ -1,0 +1,276 @@
+<section class="product_block">
+  <div class="product_list">
+    <h2 class="">{{ section.settings.category }}</h2>
+    <button class="cta">
+      <span class="hover-underline-animation"> Shop now </span>
+      <svg
+        id="arrow-horizontal"
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="10"
+        viewBox="0 0 46 16"
+      >
+        <path
+          id="Path_10"
+          data-name="Path 10"
+          d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+          transform="translate(30)"
+        ></path>
+      </svg>
+    </button>
+  </div>
+  <ul class="featured-product-container">
+    {% for block in section.blocks %}
+      {% assign product = all_products[block.settings.product] %}
+      {% if product %}
+        <li class="featured-product">
+          <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+          <h2 class="product_ttl">{{ product.title }}</h2>
+          <div class="product_box">
+            <p class="product_price">{{ product.price | money }}</p>
+            <a href="{{ product.url }}" class="product_link">商品を見る</a>
+          </div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
+
+{% style %}
+  .product_ttl {
+    padding: 1rem 0 1rem 1rem;
+    font-size: 13px;
+  }
+  .product_price {
+    text-align: right;
+    padding-right: 1rem;
+  }
+  .product_link {
+    text-align: center;
+    border: 1px solid {{ section.settings.border_color | default: "#CE3A1D" }};
+    border-radius: 30px;
+    background: #fff;
+    padding: .5rem;
+    color: #FF7700;
+    width: 80%;
+    margin: 1rem auto;
+    font-weight: bold;
+    display: block;
+    font-size: 13px;
+  }
+  .product_block {
+    background: {{ section.settings.background_color | default: "#FFF" }};
+    padding: 0 0.5rem 1rem 1rem;
+    width: 90%;
+    margin: 2rem auto;
+  }
+
+  .product_list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+  }
+  .product_list h2 {
+    color: #464646;
+    font-weight: bold;
+    font-size: 18px;
+    background: #fff;
+    padding-bottom: .5rem;
+    border-bottom: 3px solid {{ section.settings.cate_border | default: "#FF6200" }};
+  }
+  .product_list a {
+    color: {{section.settings.btn_color | default: "#CE3A1D"}};
+    font-weight: bold;
+    background: #FFFFFF;
+    display: block;
+    padding: 1rem 0;
+    border: 1px solid {{ section.settings.moreBorder_color | default: "#CE3A1D" }};
+    border-radius: 10px;
+    width: 15%;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 3px 3px 6px #00000033;
+  }
+
+  .product_list a::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 7px solid #fff;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+  }
+  .featured-product-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 2rem 0 2rem 0;
+  }
+
+  .featured-product {
+    flex: 0 0 auto;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    max-width: 250px;
+    scroll-snap-align: start;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .featured-product img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .featured-product-container::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .featured-product-container::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 4px;
+  }
+
+  .featured-product-container::-webkit-scrollbar-track {
+    background-color: #f0f0f0;
+  }
+  @media screen and (max-width: 768px) {
+    .product_list {
+      width: 100%;
+    }
+    .product_list a {
+      width: 35%;
+      font-size: 13px;
+    }
+    .product_list h2 {
+      font-size: 15px;
+    }
+    .product_block {
+      padding: 0 0 1rem 1rem;
+      width: 100%;
+    }
+  }
+  .cta {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+.hover-underline-animation {
+  position: relative;
+  color: {{ section.settings.btn_color | default: "#FF6200" }};
+  padding-bottom: 20px;
+}
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: {{ section.settings.moreBorder_color | default: "#FF6200" }};
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "カテゴリ商品棚",
+  "blocks": [
+    {
+      "type": "product",
+      "name": "商品",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "表示する商品"
+        },
+      ],
+    },
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "category",
+      "label": "カテゴリ名"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "ボタン枠色"
+    },
+    {
+      "type": "color",
+      "id": "btn_color",
+      "label": "ボタン文字色"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "背景色"
+    },
+    {
+      "type": "color",
+      "id": "moreBorder_color",
+      "label": "もっと見る枠色"
+    },
+    {
+      "type": "color",
+      "id": "cate_border",
+      "label": "カテゴリタイトル色"
+    },
+  ],
+  "presets": [
+    {
+      "name": "カテゴリ商品棚",
+      "blocks": [
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,213 @@
+{% style %}
+.swiper {
+  position: relative;
+}
+.swiper-slide {
+/*  width: 100% !important; */
+  max-height: 600px !important;
+}
+.swiper-slide img {
+  width: 100%; 
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.swiper-pagination-bullet-active {
+  background-color: #000;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  font-size: 1.5rem;
+  z-index: 10;
+  width: 20px !important;
+  height: 35px !important;
+}
+.swiper-pagination {
+  bottom: 20px !important;
+}
+.swiper-pagination-bullet {
+  width: 24px; /* ドットの幅 */
+  height: 4px; /* ドットの高さ */
+  border-radius: 0; /* 四角形にする */
+  background-color: #ccc; /* 非アクティブ状態の色 */
+  margin: 0 4px; /* ドット間のスペース */
+  opacity: 0.6; /* 少し薄くする */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff6200; /* アクティブ状態の色 */
+  opacity: 1; /* 完全に不透明にする */
+}
+
+:root {
+    --swiper-navigation-size: 30px;
+}
+@media screen and (max-width: 768px) {
+  :root {
+      --swiper-navigation-size:  18px;
+  }
+  .swiper-button-prev {
+    left: 5px !important;
+  }
+  .swiper-button-next {
+    right: 5px !important;
+  }
+  
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+}
+{% endstyle %}
+
+<section class="swiper_cnt">
+  <div class="swiper" aria-label="{{ section.settings.slider_label }}">
+    <div class="swiper-wrapper">
+      {% if section.settings.slide_1_image != blank %}
+        <div class="swiper-slide" aria-label="Slide 1">
+          <a href="{{ section.settings.slider_link_1 }}">
+            <img src="{{ section.settings.slide_1_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide 1" loading="lazy">
+          </a>
+        </div>
+      {% endif %}
+      {% if section.settings.slide_2_image != blank %}
+        <div class="swiper-slide" aria-label="Slide 2">
+          <a href="{{ section.settings.slider_link_2 }}">
+            <img src="{{ section.settings.slide_2_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide 2" loading="lazy">
+          </a>
+        </div>
+      {% endif %}
+      {% if section.settings.slide_3_image != blank %}
+        <div class="swiper-slide" aria-label="Slide 3">
+          <a href="{{ section.settings.slider_link_3 }}">
+            <img src="{{ section.settings.slide_3_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide 3" loading="lazy">
+          </a>
+        </div>
+      {% endif %}
+      {% if section.settings.slide_4_image != blank %}
+        <div class="swiper-slide" aria-label="Slide 4">
+          <a href="{{ section.settings.slider_link_4 }}">
+            <img src="{{ section.settings.slide_4_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide 4" loading="lazy">
+          </a>
+        </div>
+      {% endif %}
+      {% if section.settings.slide_5_image != blank %}
+        <div class="swiper-slide" aria-label="Slide 5">
+          <a href="{{ section.settings.slider_link_5 }}">
+            <img src="{{ section.settings.slide_5_image | img_url: 'master' }}" alt="{{ section.settings.slider_label }} Slide 5" loading="lazy">
+          </a>
+        </div>
+      {% endif %}
+    </div>
+    <!-- Pagination -->
+    <div class="swiper-pagination"></div>
+    <!-- Navigation Buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
+</section>
+
+{% javascript %}
+document.addEventListener('DOMContentLoaded', function () {
+  const swiper = new Swiper('.swiper', {
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+    },
+    loop: true,
+    centeredSlides: true,
+    slidesPerView: 1.2,
+    breakpoints: {
+      768: {
+        slidesPerView: 1.2,
+        spaceBetween: 50,
+      }
+    },
+    spaceBetween: 20,
+    effect: 'coverflow',
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+});
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "広告スライド",
+  "settings": [
+    {
+      "type": "text",
+      "id": "slider_label",
+      "label": "スライダーのラベル",
+      "default": "広告スライダー"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_1_image",
+      "label": "スライド 1 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_1",
+      "label": "スライダーリンク1"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_2_image",
+      "label": "スライド 2 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_2",
+      "label": "スライダーリンク2"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_3_image",
+      "label": "スライド 3 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_3",
+      "label": "スライダーリンク3"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_4_image",
+      "label": "スライド 4 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_4",
+      "label": "スライダーリンク4"
+    },
+    {
+      "type": "image_picker",
+      "id": "slide_5_image",
+      "label": "スライド 5 の画像"
+    },
+    {
+      "type": "url",
+      "id": "slider_link_5",
+      "label": "スライダーリンク5"
+    }
+  ],
+  "presets": [
+    {
+      "name": "広告スライダー"
+    }
+  ]
+}
+{% endschema %}

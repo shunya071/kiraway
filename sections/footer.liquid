@@ -1,1 +1,133 @@
-<p>THIS IS MY FOOTER</p>
+<footer class="footer_block">
+  <div class="footer_block_wrap">
+    <div class="footer_block_cnt">
+      <!-- <ul class="footer_menu">
+        <li class="">
+          <a href="">Q&A</a>
+        </li>
+        <li class="">
+          <a href="">Contact</a>
+        </li>
+        <li class="">
+          <a href="">Company About</a>
+        </li>
+        <li class="">
+          <a href="">Policy/Terms List</a>
+        </li>
+      </ul> -->
+      <ul class="footer_logo">
+        <li class="k-w35 k-w60-sp">
+          <img src="{{ 'kaguya_store.webp' | asset_url }}" alt="kaguya_store" class="k-w100">
+        </li>
+        <li class="k-w20">
+          <a href="https://www.instagram.com/kaguya_jpn?igsh=MTFrOTFqMnRuYmhveA==" class="product_itemlist" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50">
+              <path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <p class="footer_copy"> Kiraway company. All rights reserved</p>
+</footer>
+
+{% style %}
+  .k-w100 {
+    width: 100%;
+  }
+  .k-w20 {
+    width: 20%;
+  }
+  .k-w40 {
+    width: 40%;
+  }
+  .k-w35 {
+    width: 35%;
+  }
+  .k-w60-sp {
+    width: 60%;
+  }
+  .k-mWA {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .footer_logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .product_itemlist {
+    isplay: flex;
+    background: #eee;
+    width: 50px;
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  .footer_block {
+    background: #FFF;
+    font-weight: bold;
+    padding-top: 3rem;
+  }
+  .footer_block_wrap {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer_block_cnt {
+    width: 100%;
+  }
+  .footer_menu {
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+  }
+  .footer_menu li {
+    border-right: 1px solid #00000033;
+    padding: 0 1.5rem;
+  }
+  .footer_menu li:last-child {
+    border: none;
+  }
+  .footer_copy {
+    border-top: 1px solid #464646;
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+  }
+  @media screen and (max-width: 768px) {
+    .footer_menu {
+      flex-wrap: wrap;
+    }
+    .footer_menu li {
+      border: none;
+      width: 100%;
+      padding: 0.5rem 1.5rem;
+    }
+    .footer_block_wrap {
+      align-items: end;
+      width: 100%;
+    }
+    .footer_copy {
+      padding: .5rem;
+      font-size: 13px;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "フッター",
+}
+{% endschema %}
