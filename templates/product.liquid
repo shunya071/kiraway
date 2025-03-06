@@ -1,9 +1,31 @@
 {% section 'header' %}
-
+  {% section 'breadcrumb' %}
 <div class="product-page-container product">
-  <!-- 商品画像 -->
-  <div class="product-image">
-    <img src="{{ product.featured_image | img_url: 'large' }}" alt="{{ product.title }}">
+  <!-- メイン画像とサムネイルのコンテナ -->
+  <div class="product-image-container">
+    <!-- メイン画像スライダー -->
+    <div class="product-image-main swiper mainSwiper">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide">
+            <img src="{{ image | img_url: 'large' }}" alt="{{ product.title }}" loading="lazy">
+          </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- サムネイル画像スライダー -->
+    <div class="product-image-thumbs swiper thumbSwiper">
+      <div class="swiper-wrapper">
+        {% for image in product.images %}
+          <div class="swiper-slide">
+            <img src="{{ image | img_url: 'small' }}" alt="{{ product.title }}" loading="lazy">
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
   <!-- 商品情報 -->
@@ -93,6 +115,25 @@
       // エラー表示処理
     });
   });
+
+  var thumbSwiper = new Swiper(".thumbSwiper", {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    freeMode: true,
+    watchSlidesProgress: true,
+  });
+  
+  var mainSwiper = new Swiper(".mainSwiper", {
+    spaceBetween: 10,
+    loop: true,
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    thumbs: {
+      swiper: thumbSwiper,
+    },
+  });
   </script>
 
 {% style %}
@@ -100,29 +141,64 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 5rem;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     font-family: Arial, sans-serif;
-    padding-top:10rem;
   }
 
-  .product-image {
-    flex: 1 1 50%;
-    max-width: 45%;
-    padding-right: 3rem;
+  .product-image-container {
+    width: 40%;
+    margin-bottom: 20px;
   }
 
-  .product-image img {
+  .product-image-main {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .product-image-main img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    object-fit: contain;
     border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+
+  .product-image-thumbs {
+    width: 100%;
+  }
+
+  .product-image-thumbs .swiper-slide {
+    opacity: 0.4;
+    cursor: pointer;
+  }
+
+  .product-image-thumbs .swiper-slide-thumb-active {
+    opacity: 1;
+  }
+
+  .product-image-thumbs img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  /* ナビゲーションボタンのスタイル */
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #000;
+  }
+
+  .swiper-button-next:after,
+  .swiper-button-prev:after {
+    font-size: 24px;
   }
 
   .product-details {
-    max-width: 50%;
+    width: 53%;
+    padding-top: 3rem;
   }
 
   .product-title {

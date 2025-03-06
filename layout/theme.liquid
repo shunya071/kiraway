@@ -3,7 +3,8 @@
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Kaguya Store | {{ page_title }}</title>      
+      <title>Kaguya Store | {{ page_title }}</title>
+      <link rel="icon" href="{{ 'kaguya_logo.webp' | asset_url }}">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css"/>
       {{ 'header.css' | asset_url | stylesheet_tag }}
       {{ 'main.js' | asset_url | script_tag }}
@@ -23,4 +24,5 @@
     background-color: {{ section.settings.background_color | default: "#fff" }};
   }
   {% endstyle %}
+
 
