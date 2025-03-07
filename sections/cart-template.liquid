@@ -5,7 +5,7 @@
     <div class="cart-layout">
       <!-- カート商品リスト -->
       <div class="cart-items-container">
-        <form action="{{ routes.cart_url }}" method="post" novalidate class="cart-form">
+        <form action="/cart" method="post" id="cart-form">
           {% for item in cart.items %}
             <div class="cart-item" data-cart-item="{{ item.key }}">
               <div class="cart-item__image">
@@ -79,7 +79,7 @@
           </div>
 
           <!-- 消費税 -->
-          {% comment %} <div class="cart-summary__row">
+          <div class="cart-summary__row">
             <span>消費税（10%）</span>
             <strong>{{ cart.tax_price | money }}</strong>
           </div>
@@ -89,22 +89,13 @@
             <span>合計</span>
             <strong>{{ cart.total_price | money }}</strong>
           </div>
-           {% endcomment %}
-          <button type="submit" name="checkout" class="checkout-button">
-            購入手続きへ
-          </button>
-
-          <!-- 安心の表示 -->
-          <div class="cart-summary__security">
-            <div class="security-item">
-              <span class="icon">🔒</span>
-              <small>安全な決済</small>
-            </div>
-            <div class="security-item">
-              <span class="icon">📦</span>
-              <small>安心の配送</small>
-            </div>
-          </div>
+          
+          <form action="/cart" method="post" novalidate>
+            <input type="hidden" name="checkout" value="true">
+            <button type="submit" name="checkout" class="checkout-button">
+              購入手続きへ
+            </button>
+          </form>
         </div>
       </div>
 
@@ -204,6 +195,13 @@
       if (cartData.item_count === 0) {
         location.reload(); // カートが空になった場合はページをリロード
       }
+
+      // カートバッジの更新
+      const cartBadge = document.querySelector('.cart-count-badge');
+      if (cartBadge) {
+        cartBadge.textContent = cartData.item_count;
+        cartBadge.classList.toggle('hidden', cartData.item_count === 0);
+      }
     }
 
     // 金額のフォーマット関数
@@ -212,15 +210,14 @@
     }
 
     let currentItemKey = null;
-    let isConfirmationOpen = false; // モーダル表示状態を管理
+    let isConfirmationOpen = false;
 
-    function showDeleteConfirmModal(button) {
-      // モーダルを開く時点で自動更新をキャンセル
+    // グローバルスコープに関数を移動
+    window.showDeleteConfirmModal = function(button) {
       isConfirmationOpen = true;
-      
-      const itemTitle = button.dataset.itemTitle;
       currentItemKey = button.dataset.itemKey;
       
+      const itemTitle = button.dataset.itemTitle;
       const modal = document.getElementById('deleteConfirmModal');
       const message = modal.querySelector('.modal-message');
       message.textContent = `「${itemTitle}」を削除してもよろしいですか？`;
@@ -235,14 +232,14 @@
       });
     }
 
-    function hideDeleteConfirmModal() {
+    window.hideDeleteConfirmModal = function() {
       const modal = document.getElementById('deleteConfirmModal');
       modal.classList.remove('show');
       currentItemKey = null;
-      isConfirmationOpen = false; // モーダルを閉じたらフラグをリセット
+      isConfirmationOpen = false;
     }
 
-    function confirmDelete() {
+    window.confirmDelete = function() {
       if (currentItemKey) {
         handleQuantityChange(currentItemKey, 0);
         hideDeleteConfirmModal();
@@ -346,6 +343,14 @@
         })
         .catch(error => console.error('Error:', error));
       });
+    });
+
+    // フォームの送信をハンドリング
+    document.getElementById('cart-form').addEventListener('submit', function(e) {
+      if (e.submitter && e.submitter.name === 'checkout') {
+        // チェックアウトボタンが押された場合
+        this.action = '/cart/checkout';
+      }
     });
   });
 
@@ -481,6 +486,7 @@
     border: none;
     border-radius: 4px;
     margin-top: 1rem;
+    text-align: center;
   }
   
   .empty-cart {
@@ -703,5 +709,21 @@
   .modal.show {
     display: flex;
     animation: fadeIn 0.3s ease-out;
+  }
+
+  .invoice-button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #4A4A4A;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .invoice-button:hover {
+    background-color: #333333;
   }
   {% endstyle %}
