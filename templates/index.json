@@ -37,9 +37,7 @@
     },
     "slider_season": {
       "type": "slider_season",
-      "custom_css": [
-        ".scroll_content {justify-content: start;}"
-      ],
+      "custom_css": [],
       "settings": {
         "slide_1_image": "shopify://shop_images/2025-01-09_2.28.21.png",
         "slider_link_1": "",
@@ -54,7 +52,6 @@
         "slide_4_image": "shopify://shop_images/2025-01-09_2.28.43.png",
         "slider_link_4": "",
         "slide_text4": "ここにテキストが入りますここにテキストが入りますここにテキストが入ります",
-        "slide_5_image": "shopify://shop_images/2025-01-09_2.28.31.png",
         "slider_link_5": "",
         "slide_text5": "",
         "slider_link_6": "",
@@ -138,56 +135,19 @@
         "product_XrnaL6": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "snk0001"
           }
-        }
-      },
-      "block_order": [
-        "product_XrnaL6"
-      ],
-      "settings": {
-        "category": "",
-        "border_color": "",
-        "btn_color": "",
-        "background_color": "",
-        "moreBorder_color": "",
-        "cate_border": ""
-      }
-    },
-    "featured_product_MfGUUD": {
-      "type": "featured_product",
-      "blocks": {
-        "product_6tm9cy": {
+        },
+        "product_gmnNFD": {
           "type": "product",
           "settings": {
-            "product": ""
+            "product": "snk0001"
           }
         }
       },
       "block_order": [
-        "product_6tm9cy"
-      ],
-      "settings": {
-        "category": "",
-        "border_color": "",
-        "btn_color": "",
-        "background_color": "",
-        "moreBorder_color": "",
-        "cate_border": ""
-      }
-    },
-    "featured_product_YbrdNp": {
-      "type": "featured_product",
-      "blocks": {
-        "product_URqfpC": {
-          "type": "product",
-          "settings": {
-            "product": ""
-          }
-        }
-      },
-      "block_order": [
-        "product_URqfpC"
+        "product_XrnaL6",
+        "product_gmnNFD"
       ],
       "settings": {
         "category": "",
@@ -383,8 +343,6 @@
     "slider_season",
     "featured_product",
     "featured_product_NtT3NT",
-    "featured_product_MfGUUD",
-    "featured_product_YbrdNp",
     "featured_product_PPBPyh",
     "product_list",
     "footer"
