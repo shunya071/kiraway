@@ -19,15 +19,15 @@
       "type": "slider_ad",
       "settings": {
         "slider_label": "広告スライダー",
-        "slide_1_image": "shopify://shop_images/2025-01-09_2.24.16.png",
+        "slide_1_image": "shopify://shop_images/tshirts.jpg",
         "slider_link_1": "",
-        "slide_2_image": "shopify://shop_images/2025-01-09_2.22.31.png",
+        "slide_2_image": "shopify://shop_images/teapot-and-two-tea-cups-on-wooden-table.jpg",
         "slider_link_2": "",
-        "slide_3_image": "shopify://shop_images/2025-01-09_2.23.03.png",
+        "slide_3_image": "shopify://shop_images/stylish-summer-necklace.jpg",
         "slider_link_3": "",
-        "slide_4_image": "shopify://shop_images/2025-01-09_2.22.48.png",
+        "slide_4_image": "shopify://shop_images/milkshake-on-pink.jpg",
         "slider_link_4": "",
-        "slide_5_image": "shopify://shop_images/2025-01-09_2.24.22.png",
+        "slide_5_image": "shopify://shop_images/happy-halloween-on-orange-flatlay.jpg",
         "slider_link_5": ""
       }
     },
@@ -37,6 +37,7 @@
     },
     "slider_season": {
       "type": "slider_season",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "slide_1_image": "shopify://shop_images/2025-01-09_2.28.21.png",
