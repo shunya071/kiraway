@@ -66,11 +66,16 @@
   
   document.addEventListener('click', (event) => {
     if (!event.target.closest('.input-wrapper')) {
-      searchInput.classList.remove('active');
-      searchSubmit.classList.remove('active');
-      predictiveSearchResults.innerHTML = '';
+        searchInput.classList.remove('active');
+        searchSubmit.classList.remove('active');
+        
+        // predictiveSearchResults が存在する場合のみ処理
+        if (typeof predictiveSearchResults !== 'undefined' && predictiveSearchResults !== null) {
+            predictiveSearchResults.innerHTML = '';
+        }
     }
-  });
+});
+
   </script>
 
 {% style %}

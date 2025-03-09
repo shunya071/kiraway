@@ -34,7 +34,7 @@
     border-radius: 8px;
     overflow: hidden;
     background: #fff;
-    text-align: center;
+    {% comment %} text-align: center; {% endcomment %}
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -54,15 +54,17 @@
 /* 商品タイトル */
 .search-result-item h2 {
     font-size: 18px;
-    margin: 10px 0;
     color: #333;
+    padding: 1rem;
 }
 
 /* 商品価格 */
 .search-result-item p {
     font-size: 16px;
-    color: #888;
+    color: #333;
     margin-bottom: 10px;
+    text-align: right;
+    padding-right: 1rem;
 }
 
 /* ボタンのスタイル */
@@ -73,11 +75,12 @@
     text-decoration: none;
     border-radius: 4px;
     transition: background 0.3s;
+    height: 100%;
 }
 
-.search-result-item a:hover {
-    background: #eee;
-}
+
+.search-result-item .product_link {
+color: #333}
 
 @media screen and (max-width: 768px) {
     .search-results-list {
@@ -108,7 +111,7 @@
                         <img src="{{ item.featured_image | img_url: 'medium' }}" alt="{{ item.title }}">
                         <h2 class="product_ttl">{{ item.title }}</h2>
                         <p class="product_price">{{ item.price | money }}</p>
-                        <span>詳細を見る</span>
+                        <span class="product_link">商品を見る</span>
                     </a>
                 </li>
             {% endif %}
